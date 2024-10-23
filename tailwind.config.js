@@ -6,7 +6,7 @@ export default {
       colors: {
         "azul-claro": "#0353B3",
         "azul-medio": "#262D47",
-        "azul-escuro": "#1B213B",
+        "azul-escure": "#1B213B",
       },
     },
   },
