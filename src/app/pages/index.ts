@@ -1,2 +1,1 @@
-export * from './dashboard/Dashboard';
-export * from './tailwind/Tailwind';
+export * from "./tailwind/Tailwind";
