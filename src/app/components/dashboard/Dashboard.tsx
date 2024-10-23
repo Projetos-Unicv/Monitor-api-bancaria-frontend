@@ -1,4 +1,3 @@
-// import React, { PureComponent } from "react";
 import {
   LineChart,
   Line,
@@ -7,9 +6,7 @@ import {
   CartesianGrid,
   Tooltip,
 } from "recharts";
-import { Footer } from "../Footer/footer";
-import { NavBar } from "../NavBar/Navbar";
-import { IconBank } from "../ListBank/ListBank";
+
 const data = [
   {
     name: "Page A",
@@ -54,8 +51,7 @@ const data = [
     amt: 2100,
   },
 ];
-
-const TesteGrafico = () => {
+export const TesteGrafico = () => {
   return (
     <LineChart width={800} height={640} data={data}>
       <Line type="monotone" dataKey="uv" stroke="#8884d8" />
@@ -64,28 +60,5 @@ const TesteGrafico = () => {
       <YAxis />
       <Tooltip />
     </LineChart>
-  );
-};
-
-const Conteudo = () => {
-  return (
-    <main className="bg-white shadow dark:bg-gray-000 flex m-4">
-      <div className="flex-initial w-60">
-        <IconBank />
-      </div>
-      <div className="bg-white">
-        <TesteGrafico />
-      </div>
-    </main>
-  );
-};
-
-export const Dashboard = () => {
-  return (
-    <div>
-      <NavBar />
-      <Conteudo />
-      <Footer />
-    </div>
   );
 };
