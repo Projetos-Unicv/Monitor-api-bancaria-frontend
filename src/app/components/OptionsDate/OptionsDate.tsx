@@ -49,7 +49,7 @@ export default function BasicSelect({ onChange }: BasicSelectProps) {
           >
             <MenuItem value={"DAY"}>24-HRS</MenuItem>
             <MenuItem value={"WEEK"}>7-DIAS</MenuItem>
-            <MenuItem value={"MONTH"}>30-DIAS</MenuItem>
+            <MenuItem value={"MOUTH"}>30-DIAS</MenuItem>
           </Select>
         </FormControl>
       </Box>
