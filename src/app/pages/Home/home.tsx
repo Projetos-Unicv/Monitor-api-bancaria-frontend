@@ -2,21 +2,20 @@
 import { Footer } from "../../components/Footer/footer";
 import { NavBar } from "../../components/NavBar/Navbar";
 import { IconBank } from "../../components/ListBank/ListBank";
-import { TesteGrafico } from "../../components/dashboard/Dashboard";
-
+import { TesteGrafico } from "../../components/Dashboard/Dashboard";
+import { Options } from "../../components/Options/Options";
 const Conteudo = () => {
+  const optionsType = [
+    { value: "registro", label: "Registro" },
+    { value: "consulta", label: "Consulta" },
+  ];
   return (
-    <main className="bg-black shadow dark:bg-gray-000 flex m-4">
-      <div className="flex-initial w-60">
-        <IconBank />
-      </div>
+    <main className="bg-azul-medio shadow dark:bg-gray-000 flex-colm p-10">
       <div>
-        <h1 className="bg-white">
-          Aqui deve ficar os filtro do tipo de consulta, dias, e se está ativo
-          conforme está informado no prototipo figma
-        </h1>
+        <Options options={optionsType} />
       </div>
-      <div className="bg-white">
+      <div className="bg-azul-medio flex items-center justify-center">
+        <IconBank />
         <TesteGrafico />
       </div>
     </main>
@@ -25,7 +24,7 @@ const Conteudo = () => {
 
 export const Home = () => {
   return (
-    <div>
+    <div className="bg-azul-escure">
       <NavBar />
       <Conteudo />
       <Footer />
