@@ -11,9 +11,13 @@ interface ToggleOption {
 
 interface ColorToggleButtonProps {
   options: ToggleOption[];
+  onChange: (value: string) => void;
 }
 
-export const Options: React.FC<ColorToggleButtonProps> = ({ options }) => {
+export const Options: React.FC<ColorToggleButtonProps> = ({
+  options,
+  onChange,
+}) => {
   const [alignment, setAlignment] = React.useState(options[0].value);
 
   const handleChange = (
@@ -21,6 +25,7 @@ export const Options: React.FC<ColorToggleButtonProps> = ({ options }) => {
     newAlignment: string
   ) => {
     setAlignment(newAlignment);
+    onChange(newAlignment);
   };
 
   return (

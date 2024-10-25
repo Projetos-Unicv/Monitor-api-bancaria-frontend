@@ -1,18 +1,24 @@
 import * as React from "react";
-import { theme } from "../../shared/mui-Theme/mui-theme"; // Certifique-se de que o caminho está correto
+import { theme } from "../../shared/mui-Theme/mui-theme";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { ThemeProvider } from "@mui/material/styles";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"; // Importação correta do ícone
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
-export default function BasicSelect() {
+interface BasicSelectProps {
+  onChange: (value: string) => void; // Define a prop para passar a função de mudança
+}
+
+export default function BasicSelect({ onChange }: BasicSelectProps) {
   const [data, setData] = React.useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
-    setData(event.target.value as string);
+    const newValue = event.target.value as string;
+    setData(newValue);
+    onChange(newValue); // Chama a função passada como prop
   };
 
   return (
@@ -26,55 +32,24 @@ export default function BasicSelect() {
             value={data}
             label="data"
             onChange={handleChange}
-            IconComponent={ArrowDropDownIcon} // Usando o ícone
+            IconComponent={ArrowDropDownIcon}
             sx={{
-              borderRadius: "8px", // Borda arredondada
-              boxShadow: 2, // Sombra
+              borderRadius: "8px",
+              boxShadow: 2,
               "&:hover": {
-                boxShadow: 4, // Sombra ao passar o mouse
+                boxShadow: 4,
               },
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: theme.palette.primary.main, // Cor da borda
+                borderColor: theme.palette.primary.main,
               },
               "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: theme.palette.primary.dark, // Cor da borda quando focado
+                borderColor: theme.palette.primary.dark,
               },
             }}
           >
-            <MenuItem
-              value={"DAY"}
-              sx={{
-                color: theme.palette.secondary.contrastText,
-                backgroundColor: theme.palette.primary.main,
-                "&:hover": {
-                  backgroundColor: theme.palette.primary.dark, // Cor ao passar o mouse
-                },
-              }}
-            >
-              24-HRS
-            </MenuItem>
-            <MenuItem
-              value={"WEEK"}
-              sx={{
-                color: theme.palette.secondary.contrastText,
-                "&:hover": {
-                  backgroundColor: theme.palette.primary.dark,
-                },
-              }}
-            >
-              7-DIAS
-            </MenuItem>
-            <MenuItem
-              value={"MONTH"}
-              sx={{
-                color: theme.palette.secondary.contrastText,
-                "&:hover": {
-                  backgroundColor: theme.palette.primary.dark,
-                },
-              }}
-            >
-              30-DIAS
-            </MenuItem>
+            <MenuItem value={"DAY"}>24-HRS</MenuItem>
+            <MenuItem value={"WEEK"}>7-DIAS</MenuItem>
+            <MenuItem value={"MONTH"}>30-DIAS</MenuItem>
           </Select>
         </FormControl>
       </Box>
