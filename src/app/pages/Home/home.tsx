@@ -4,6 +4,7 @@ import { IconBank } from "../../components/ListBank/ListBank";
 import { TesteGrafico } from "../../components/Dashboard/Dashboard";
 import { Options } from "../../components/OptionsType/OptionsType";
 import BasicSelect from "../../components/OptionsDate/OptionsDate";
+import { FindStatusByLast } from "../../shared/service/FindStatus";
 import { useEffect, useState } from "react";
 import { Record } from "../../shared/interfaces/Record-Interface";
 import api from "../../api/api";
@@ -13,6 +14,7 @@ const Conteudo = () => {
   const [tempo, setTempo] = useState("");
   const [tipo, setTipo] = useState("");
   const [bank, setBank] = useState(""); // Corrigido para setBank
+  const [status, setStatus] = useState("");
   const optionsType = [
     { value: "registro", label: "Registro" },
     { value: "consulta", label: "Consulta" },
@@ -23,13 +25,11 @@ const Conteudo = () => {
     bank: string,
     filter: string
   ): Promise<void> => {
-    console.log(type);
-    console.log(bank);
-    console.log(filter);
     try {
-      const response = await api.get(
-        `${type}/BANCODOBRASIL_V2?filter=${tempo}`
-      );
+      console.log(type);
+      console.log(bank);
+      console.log(filter);
+      const response = await api.get(`${type}/${bank}?filter=${tempo}`);
       setRecords(response.data); // Supondo que a resposta contém os dados em 'data'
     } catch (err) {
       console.error("Ops! houve um erro: " + err);
@@ -41,11 +41,24 @@ const Conteudo = () => {
       // Condição para evitar chamadas desnecessárias
       GetRecord(tipo, bank, tempo);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tempo, tipo, bank]);
 
   // Se você quiser observar mudanças em Records
   useEffect(() => {
-    console.log(Records);
+    const fetchStatus = async () => {
+      if (Records.length > 0) {
+        // Verifica se há registros
+        try {
+          const status = await FindStatusByLast(Records); // Usando await corretamente
+          setStatus(status);
+        } catch (error) {
+          console.error("Erro ao buscar status:", error);
+        }
+      }
+    };
+
+    fetchStatus(); // Chama a função assíncrona
   }, [Records]);
 
   return (
@@ -57,7 +70,7 @@ const Conteudo = () => {
       </div>
       <div className="bg-azul-medio flex items-center justify-center">
         <IconBank onChange={setBank} />
-        <TesteGrafico />
+        <TesteGrafico data={Records} />
       </div>
     </main>
   );

@@ -6,64 +6,32 @@ import {
   CartesianGrid,
   Tooltip,
 } from "recharts";
+import { Record } from "../../shared/interfaces/Record-Interface";
 
-const data = [
-  {
-    name: "Page A",
-    uv: 0,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 100,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 200,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 100,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 300,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 0,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 1000,
-    pv: 4300,
-    amt: 2100,
-  },
-];
+interface Iprops {
+  data: Record[];
+}
 
-export const TesteGrafico = () => {
+export const TesteGrafico = ({ data }: Iprops) => {
+  console.log(data);
   return (
-    <div className="flex flex-col items-center">
-      <h2 className="text-white mb-4">Opções devem ficar a baixo</h2>{" "}
-      {/* Título acima do gráfico */}
-      <LineChart className="bg-black" width={800} height={640} data={data}>
-        <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-        <CartesianGrid stroke="#ccc" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-      </LineChart>
-    </div>
+    // <ResponsiveContainer width="100%" height="100%">
+    <LineChart width={1250} height={640} data={data}>
+      <Line dataKey="responseStatus" stroke="#8884d8" />
+      <Line type="monotone" dataKey="timeRequest" stroke="#8884d8" />
+      <CartesianGrid stroke="#ccc" />
+      <XAxis
+        dataKey="dateCreated"
+        angle={20}
+        tickFormatter={(dateCreated) => {
+          return dateCreated.length > 10
+            ? `${dateCreated.substring(0, 10)}...`
+            : dateCreated;
+        }}
+      />
+      <YAxis />
+      <Tooltip />
+    </LineChart>
+    // </ResponsiveContainer>
   );
 };

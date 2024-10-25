@@ -22,37 +22,37 @@ export const IconBank = ({ onChange }: PropsInterface) => {
     {
       src: "../../../public/sicredi-160.svg",
       alt: "Sicredi",
-      value: "ITAU_V2",
+      value: "SICREDI_V2",
     },
     {
       src: "../../../public/banco-do-brasil-3.svg",
       alt: "Banco do Brasil",
-      value: "ITAU_V2",
+      value: "BANCODOBRASIL_V2",
     },
     {
       src: "../../../public/banco-inter-logo.svg",
       alt: "Banco Inter",
-      value: "ITAU_V2",
+      value: "INTER",
     },
     {
       src: "../../../public/sicoob-vector-logo.svg",
       alt: "Sicoob",
-      value: "ITAU_V2",
+      value: "SICOOB_V2",
     },
     {
       src: "../../../public/santander1.svg",
       alt: "Santander",
-      value: "ITAU_V2",
+      value: "SANTANDER",
     },
     {
       src: "../../../public/caixa-economica-federal-1.svg",
       alt: "Caixa Econômica Federal",
-      value: "ITAU_V2",
+      value: "CAIXA",
     },
     {
       src: "../../../public/banrisul-logo.svg",
       alt: "Banrisul",
-      value: "ITAU_V2",
+      value: "BANRISUL",
     },
   ];
 
