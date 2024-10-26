@@ -23,7 +23,7 @@ export default function BasicSelect({ onChange }: BasicSelectProps) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ minWidth: 120, maxWidth: 120, margin: "20px auto" }}>
+      <Box sx={{ minWidth: 120, maxWidth: 120 }}>
         <FormControl fullWidth variant="outlined">
           <InputLabel id="demo-simple-select-label">Últimos(a)</InputLabel>
           <Select

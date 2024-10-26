@@ -37,12 +37,7 @@ export const Options: React.FC<ColorToggleButtonProps> = ({
         onChange={handleChange}
         aria-label="Platform"
         sx={{
-          display: "flex",
-          justifyContent: "center",
-          border: `1px solid ${theme.palette.primary.main}`, // Borda do grupo
-          borderRadius: "8px", // Borda arredondada
-          boxShadow: 2, // Sombra
-          backgroundColor: theme.palette.background.paper, // Cor de fundo
+          // css aqui
         }}
       >
         {options.map((option) => (

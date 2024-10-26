@@ -62,16 +62,19 @@ const Conteudo = () => {
   }, [Records]);
 
   return (
-    <main className="bg-azul-medio shadow dark:bg-gray-000 flex-col p-10">
-      <div>
-        <Options options={optionsType} onChange={setTipo} />
-        <BasicSelect onChange={setTempo} />{" "}
-        {/* Passando setTempo corretamente */}
-      </div>
+    <main className="bg-azul-medio flex flex-row ">
       <div className="bg-azul-medio flex items-center justify-center">
         <IconBank onChange={setBank} />
+      </div>
+      <div className="flex flex-col">
+        <div className="flex flex-row">
+          <Options options={optionsType} onChange={setTipo} />
+          <BasicSelect onChange={setTempo} />{" "}
+        </div>
         <TesteGrafico data={Records} />
       </div>
+      {/* Passando setTempo corretamente */}
+
     </main>
   );
 };
