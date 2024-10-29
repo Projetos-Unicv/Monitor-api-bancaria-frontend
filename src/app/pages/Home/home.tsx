@@ -8,6 +8,7 @@ import { FindStatusByLast } from "../../shared/service/FindStatus";
 import { useEffect, useState } from "react";
 import { Record } from "../../shared/interfaces/Record-Interface";
 import api from "../../api/api";
+import Tabela from "../../components/TableError/Table";
 
 const Conteudo = () => {
   const [Records, setRecords] = useState<Record[]>([]); // Inicializado como array vazio
@@ -74,7 +75,6 @@ const Conteudo = () => {
         <TesteGrafico data={Records} />
       </div>
       {/* Passando setTempo corretamente */}
-
     </main>
   );
 };
@@ -84,6 +84,8 @@ export const Home = () => {
     <div className="bg-azul-escure">
       <NavBar />
       <Conteudo />
+      <Tabela />
+
       <Footer />
     </div>
   );

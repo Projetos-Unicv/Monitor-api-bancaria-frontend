@@ -14,6 +14,7 @@ interface Iprops {
 
 export const TesteGrafico = ({ data }: Iprops) => {
   console.log(data);
+  const yTicks = ["Normal", "Lenta", "MuitoLenta", "Timeout", "Erro"];
   return (
     // <ResponsiveContainer width="100%" height="100%">
     <LineChart width={1250} height={640} data={data}>
@@ -29,7 +30,13 @@ export const TesteGrafico = ({ data }: Iprops) => {
             : dateCreated;
         }}
       />
-      <YAxis />
+      <YAxis
+        type="category" // Eixo Y categórico
+        dataKey="responseStatus" // A chave dos dados categóricos
+        tickFormatter={(value) => {
+          return value; // Formata os ticks do eixo Y como os valores de texto originais
+        }}
+      />
       <Tooltip />
     </LineChart>
     // </ResponsiveContainer>
