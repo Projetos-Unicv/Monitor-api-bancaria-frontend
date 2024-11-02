@@ -17,40 +17,40 @@ export const IconBank = ({ onChange }: PropsInterface) => {
 
   // Array de imagens dos bancos
   const banks = [
-    { src: "../../../public/itau.svg", alt: "Itaú", value: "ITAU_V2" },
-    { src: "../../../public/nubank-3.svg", alt: "Nubank", value: "ITAU_V2" },
+    { src: "../../../public/image/itau.svg", alt: "Itaú", value: "ITAU_V2" },
+    { src: "../../../public/image/nubank-3.svg", alt: "Nubank", value: "ITAU_V2" },
     {
-      src: "../../../public/sicredi-160.svg",
+      src: "../../../public/image/sicredi-160.svg",
       alt: "Sicredi",
       value: "SICREDI_V2",
     },
     {
-      src: "../../../public/banco-do-brasil-3.svg",
+      src: "../../../public/image/banco-do-brasil-3.svg",
       alt: "Banco do Brasil",
       value: "BANCODOBRASIL_V2",
     },
     {
-      src: "../../../public/banco-inter-logo.svg",
+      src: "../../../public/image/banco-inter-logo.svg",
       alt: "Banco Inter",
       value: "INTER",
     },
     {
-      src: "../../../public/sicoob-vector-logo.svg",
+      src: "../../../public/image/sicoob-vector-logo.svg",
       alt: "Sicoob",
       value: "SICOOB_V2",
     },
     {
-      src: "../../../public/santander1.svg",
+      src: "../../../public/image/santander1.svg",
       alt: "Santander",
       value: "SANTANDER",
     },
     {
-      src: "../../../public/caixa-economica-federal-1.svg",
+      src: "../../../public/image/caixa-economica-federal-1.svg",
       alt: "Caixa Econômica Federal",
       value: "CAIXA",
     },
     {
-      src: "../../../public/banrisul-logo.svg",
+      src: "../../../public/image/banrisul-logo.svg",
       alt: "Banrisul",
       value: "BANRISUL",
     },

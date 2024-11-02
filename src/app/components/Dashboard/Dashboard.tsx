@@ -5,6 +5,7 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
+  ResponsiveContainer,
 } from "recharts";
 import { Record } from "../../shared/interfaces/Record-Interface";
 
@@ -16,8 +17,8 @@ export const TesteGrafico = ({ data }: Iprops) => {
   console.log(data);
   const yTicks = ["Normal", "Lenta", "MuitoLenta", "Timeout", "Erro"];
   return (
-    // <ResponsiveContainer width="100%" height="100%">
-    <LineChart width={1250} height={640} data={data}>
+    <ResponsiveContainer width="100%" height="100%">
+    <LineChart data={data}>
       <Line dataKey="responseStatus" stroke="#8884d8" />
       <Line type="monotone" dataKey="timeRequest" stroke="#8884d8" />
       <CartesianGrid stroke="#ccc" />
@@ -39,6 +40,6 @@ export const TesteGrafico = ({ data }: Iprops) => {
       />
       <Tooltip />
     </LineChart>
-    // </ResponsiveContainer>
+    </ResponsiveContainer>
   );
 };

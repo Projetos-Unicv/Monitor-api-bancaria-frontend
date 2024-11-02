@@ -46,7 +46,7 @@ export const Tabela: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="p-4">
       <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-lg overflow-hidden">
         <thead>
           <tr className="dark:bg-gray-900 text-white font-bold">

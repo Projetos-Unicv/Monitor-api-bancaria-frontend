@@ -10,7 +10,7 @@ import { Record } from "../../shared/interfaces/Record-Interface";
 import api from "../../api/api";
 import Tabela from "../../components/TableError/Table";
 
-const Conteudo = () => {
+const Main = () => {
   const [Records, setRecords] = useState<Record[]>([]); // Inicializado como array vazio
   const [tempo, setTempo] = useState("");
   const [tipo, setTipo] = useState("");
@@ -63,31 +63,31 @@ const Conteudo = () => {
   }, [Records]);
 
   return (
-    <main className="bg-azul-medio flex flex-row ">
-      <div className="bg-azul-medio flex items-center justify-center">
-        <IconBank onChange={setBank} />
-      </div>
-      <div className="flex flex-col">
-        <div className="flex flex-row">
-          <Options options={optionsType} onChange={setTipo} />
-          <BasicSelect onChange={setTempo} />{" "}
+    <main className="min-h-screen bg-azul-medio flex flex-col p-10">
+      <div className="flex flex-row justify-center">
+        <div className="bg-azul-medio flex items-center justify-center">
+          <IconBank onChange={setBank} />
         </div>
-        <TesteGrafico data={Records} />
+        <div className="flex flex-col w-full">
+          <div className="flex flex-row">
+            <Options options={optionsType} onChange={setTipo} />
+            <BasicSelect onChange={setTempo} />{" "}
+          </div>
+          <TesteGrafico data={Records} />
+        </div>
       </div>
-      {/* Passando setTempo corretamente */}
+      <Tabela />
     </main>
   );
 };
 
 export const Home = () => {
   return (
-    <div className="bg-azul-escure">
+    <>
       <NavBar />
-      <Conteudo />
-      <Tabela />
-
+      <Main />
       <Footer />
-    </div>
+    </>
   );
 };
 
