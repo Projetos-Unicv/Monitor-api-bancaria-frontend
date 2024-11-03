@@ -31,13 +31,14 @@ export const Options: React.FC<ColorToggleButtonProps> = ({
   return (
     <ThemeProvider theme={theme}>
       <ToggleButtonGroup
+
         color="primary"
         value={alignment}
         exclusive
         onChange={handleChange}
         aria-label="Platform"
         sx={{
-          // css aqui
+          
         }}
       >
         {options.map((option) => (
@@ -47,7 +48,7 @@ export const Options: React.FC<ColorToggleButtonProps> = ({
             sx={{
               border: `1px solid ${theme.palette.primary.main}`, // Borda do botão
               "&.Mui-selected": {
-                backgroundColor: theme.palette.primary.main, // Cor ao selecionar
+                backgroundColor: theme.palette.primary.light, // Cor ao selecionar
                 color: theme.palette.secondary.contrastText, // Cor do texto ao selecionar
               },
               "&:hover": {

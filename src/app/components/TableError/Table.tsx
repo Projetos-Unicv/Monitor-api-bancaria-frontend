@@ -46,7 +46,7 @@ export const Tabela: React.FC = () => {
   }
 
   return (
-    <div className="p-4">
+    <div className="pl-[12em]">
       <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-lg overflow-hidden">
         <thead>
           <tr className="dark:bg-gray-900 text-white font-bold">

@@ -2,7 +2,7 @@ export const NavBar = () => {
   return (
     <nav className=" flex flex-wrap items-center justify-between p-4 border-gray-200 bg-[#0353b3]">
         <a href="https://tecnospeed.com.br/" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <img src="../../../public/image/tecnospeed-white.svg" width={140} height={40} alt="Tecnospeed Logo"/>
+          <img src="../../../image/tecnospeed-white.svg" width={140} height={40} alt="Tecnospeed Logo"/>
           <span className="text-white self-center text-2xl font-medium whitespace-nowrap">
             Monitor Bancário
           </span>

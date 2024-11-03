@@ -1,9 +1,9 @@
 import { Footer } from "../../components/Footer/footer";
 import { NavBar } from "../../components/NavBar/Navbar";
 import { IconBank } from "../../components/ListBank/ListBank";
-import { TesteGrafico } from "../../components/Dashboard/Dashboard";
-import { Options } from "../../components/OptionsType/OptionsType";
-import BasicSelect from "../../components/OptionsDate/OptionsDate";
+import { Grafico } from "../../components/Dashboard/Dashboard";
+import { Options } from "../../components/BotoesGrafico/ButtonType";
+import BasicSelect from "../../components/BotoesGrafico/ButtonDate";
 import { FindStatusByLast } from "../../shared/service/FindStatus";
 import { useEffect, useState } from "react";
 import { Record } from "../../shared/interfaces/Record-Interface";
@@ -69,11 +69,16 @@ const Main = () => {
           <IconBank onChange={setBank} />
         </div>
         <div className="flex flex-col w-full">
-          <div className="flex flex-row">
-            <Options options={optionsType} onChange={setTipo} />
-            <BasicSelect onChange={setTempo} />{" "}
+          <div className="flex flex-row pl-[4em] justify-between items-center">
+            <div className="flex flex-row justify-around">
+              <Options options={optionsType} onChange={setTipo} />
+              <BasicSelect onChange={setTempo} />{" "}
+            </div>
+            <div className="mx-auto">
+              <p>teste</p>
+            </div>
           </div>
-          <TesteGrafico data={Records} />
+          <Grafico data={Records} />
         </div>
       </div>
       <Tabela />

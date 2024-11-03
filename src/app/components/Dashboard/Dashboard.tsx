@@ -13,7 +13,7 @@ interface Iprops {
   data: Record[];
 }
 
-export const TesteGrafico = ({ data }: Iprops) => {
+export const Grafico = ({ data }: Iprops) => {
   console.log(data);
   const yTicks = ["Normal", "Lenta", "MuitoLenta", "Timeout", "Erro"];
   return (
