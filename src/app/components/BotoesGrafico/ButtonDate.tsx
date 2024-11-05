@@ -34,17 +34,7 @@ export default function BasicSelect({ onChange }: BasicSelectProps) {
             onChange={handleChange}
             IconComponent={ArrowDropDownIcon}
             sx={{
-              borderRadius: "8px",
-              boxShadow: 2,
-              "&:hover": {
-                boxShadow: 4,
-              },
-              "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: theme.palette.primary.main,
-              },
-              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: theme.palette.primary.dark,
-              },
+
             }}
           >
             <MenuItem value={"DAY"}>24-HRS</MenuItem>

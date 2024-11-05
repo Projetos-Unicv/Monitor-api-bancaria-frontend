@@ -72,10 +72,12 @@ const Main = () => {
           <div className="flex flex-row pl-[4em] justify-between items-center">
             <div className="flex flex-row justify-around">
               <Options options={optionsType} onChange={setTipo} />
-              <BasicSelect onChange={setTempo} />{" "}
             </div>
             <div className="mx-auto">
               <p>teste</p>
+            </div>
+            <div>
+            <BasicSelect onChange={setTempo} />{" "}
             </div>
           </div>
           <Grafico data={Records} />
