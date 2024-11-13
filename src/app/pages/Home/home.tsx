@@ -77,13 +77,15 @@ const Main = () => {
               <p>teste</p>
             </div>
             <div>
-            <BasicSelect onChange={setTempo} />{" "}
+              <BasicSelect onChange={setTempo} />{" "}
             </div>
           </div>
           <Grafico data={Records} />
         </div>
       </div>
-      <Tabela />
+      <div className="mt-[50px]">
+        <Tabela />
+      </div>
     </main>
   );
 };

@@ -31,33 +31,39 @@ export const Options: React.FC<ColorToggleButtonProps> = ({
   return (
     <ThemeProvider theme={theme}>
       <ToggleButtonGroup
-
         color="primary"
         value={alignment}
         exclusive
         onChange={handleChange}
         aria-label="Platform"
-        sx={{
-          
-        }}
+        sx={{}}
       >
         {options.map((option) => (
           <ToggleButton
             key={option.value}
             value={option.value}
             sx={{
-              border: `1px solid ${theme.palette.primary.main}`, // Borda do botão
+              color: "white",
+
+              "&:hover": {
+                color: "black",
+                backgroundColor: "transparent", // Cor de fundo no hover padrão
+              },
+
+              border: `3px solid ${theme.palette.primary.main}`, // Borda do botão
+
               "&.Mui-selected": {
                 backgroundColor: theme.palette.primary.light, // Cor ao selecionar
                 color: theme.palette.secondary.contrastText, // Cor do texto ao selecionar
+                borderColor: "white",
+
+                "&:hover": {
+                  backgroundColor: theme.palette.primary.light, // Manter cor de fundo ao passar o mouse quando selecionado
+                  color: theme.palette.secondary.contrastText,
+                },
               },
-              "&:hover": {
-                backgroundColor: theme.palette.primary.light, // Cor ao passar o mouse
-                color: theme.palette.secondary.contrastText, // Cor do texto ao passar o mouse
-              },
-              margin: "0 2px", // Espaçamento entre os botões
-              width: "100px", // Largura fixa
-              height: "40px", // Altura fixa
+              width: "150px", // Largura fixa
+              height: "50px", // Altura fixa
               fontSize: "16px", // Tamanho da fonte
             }}
           >
