@@ -2,8 +2,8 @@ import { Footer } from "../../components/Footer/footer";
 import { NavBar } from "../../components/NavBar/Navbar";
 import { IconBank } from "../../components/ListBank/ListBank";
 import { Grafico } from "../../components/Dashboard/Dashboard";
-import { Options } from "../../components/BotoesGrafico/ButtonType";
-import BasicSelect from "../../components/BotoesGrafico/ButtonDate";
+import { Options } from "../../components/BotoesGrafico/Desktop/ButtonType";
+import BasicSelect from "../../components/BotoesGrafico/Desktop/ButtonDate";
 import { FindStatusByLast } from "../../shared/service/FindStatus";
 import { useEffect, useState } from "react";
 import { Record } from "../../shared/interfaces/Record-Interface";
@@ -63,13 +63,13 @@ const Main = () => {
   }, [Records]);
 
   return (
-    <main className="min-h-screen bg-azul-medio flex flex-col p-10">
+    <main className="min-h-screen bg-azul-medio flex flex-col">
       <div className="flex flex-row justify-center">
-        <div className="bg-azul-medio flex items-center justify-center">
+        <div className="bg-azul-medio md:flex items-center justify-center hidden">
           <IconBank onChange={setBank} />
         </div>
         <div className="flex flex-col w-full">
-          <div className="flex flex-row pl-[4em] justify-between items-center">
+          <div className="md:flex flex-row pl-[4em] justify-between items-center hidden">
             <div className="flex flex-row justify-around">
               <Options options={optionsType} onChange={setTipo} />
             </div>

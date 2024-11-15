@@ -1,7 +1,7 @@
 import * as React from "react";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import { theme } from "../../shared/mui-Theme/mui-theme"; // Certifique-se de que o caminho está correto
+import { theme } from "../../../shared/mui-Theme/mui-theme"; // Certifique-se de que o caminho está correto
 import { ThemeProvider } from "@mui/material/styles";
 
 interface ToggleOption {
