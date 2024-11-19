@@ -58,7 +58,7 @@ export default function ButtonSplirDataMobile() {
         {options.map((option, index) => (
           <MenuItem
             key={option}
-            disabled={index === 2}
+            disabled={index === 3}
             selected={index === selectedIndex}
             onClick={(event) => handleMenuItemClick(event, index)}
           >

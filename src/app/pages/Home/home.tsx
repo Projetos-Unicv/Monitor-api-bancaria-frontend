@@ -74,7 +74,7 @@ const Main = () => {
               <Options options={optionsType} onChange={setTipo} />
             </div>
             <div className="mx-auto">
-              <p>teste</p>
+              <p>Aplicar aqui o elemento de ativo ou não</p>
             </div>
             <div>
               <BasicSelect onChange={setTempo} />{" "}

@@ -1,20 +1,29 @@
 import { useState } from "react";
 import ButtonSplirTypeMobile from "../BotoesGrafico/Mobile/ButtonTypeMobile";
-import ButtonSplirDataMobile  from "../BotoesGrafico/Mobile/ButtonDateMobile";
+import ButtonSplirDataMobile from "../BotoesGrafico/Mobile/ButtonDateMobile";
+import ListaBancoMobile from "../BotoesGrafico/Mobile/ListaBancoMobile";
 
 export const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [tempo, setTempo] = useState("");
   const [tipo, setTipo] = useState("");
-  const [bank, setBank] = useState(""); // Corrigido para setBank
+  const [bank, setBank] = useState(""); // Estado corrigido
   const [status, setStatus] = useState("");
+
   const optionsType = [
     { value: "registro", label: "Registro" },
     { value: "consulta", label: "Consulta" },
   ];
 
+  // Corrigindo o uso do estado para banco selecionado
+  const handleBankChange = (bankValue: string) => {
+    setBank(bankValue); // Agora usamos setBank corretamente
+    console.log("Banco selecionado:", bankValue);
+  };
+
   return (
     <nav className="flex flex-wrap items-center justify-between p-4 border-gray-200 bg-[#0353b3]">
+      {/* Logo e Título */}
       <a
         href="https://tecnospeed.com.br/"
         className="flex items-center space-x-3 rtl:space-x-reverse"
@@ -25,7 +34,7 @@ export const NavBar = () => {
           height={40}
           alt="Tecnospeed Logo"
         />
-        <span className="text-white self-center text-2xl font-medium whitespace-nowrap">
+        <span className="text-white self-center text-1xl font-medium whitespace-nowrap">
           Monitor Bancário
         </span>
       </a>
@@ -83,26 +92,19 @@ export const NavBar = () => {
         <nav className="mt-4">
           <ul className="space-y-2">
             <li>
-              <a
-                href="#"
-                className="block px-4 py-2 hover:bg-blue-500 rounded"
-              >
-                Banco
-              </a>
+              <ListaBancoMobile onChange={handleBankChange} />
             </li>
             <li>
               <ButtonSplirTypeMobile />
             </li>
             <li>
-              <button className="block px-4 py-2 hover:bg-blue-500 rounded">
-                Tempo
-              </button>
-                <ButtonSplirDataMobile />
+              <ButtonSplirDataMobile />
             </li>
           </ul>
         </nav>
       </aside>
 
+      {/* Overlay para fechar o menu no mobile */}
       {menuOpen && (
         <div
           onClick={() => setMenuOpen(false)}
