@@ -12,6 +12,7 @@ import Tabela from "../../components/TableError/Table";
 
 const Main = () => {
   const [Records, setRecords] = useState<Record[]>([]); // Inicializado como array vazio
+  const [recordsErrors, setRecordErrors] = useState<Record[]>([]); // Inicializado como array vazio
   const [tempo, setTempo] = useState("");
   const [tipo, setTipo] = useState("");
   const [bank, setBank] = useState(""); // Corrigido para setBank
@@ -36,11 +37,30 @@ const Main = () => {
       console.error("Ops! houve um erro: " + err);
     }
   };
+  const GetErroRecord = async (
+    type: string,
+    bank: string,
+    filter: string
+  ): Promise<void> => {
+    try {
+      console.log(type);
+      console.log(bank);
+      console.log(filter);
+      const response = await api.get(
+        `${type}/${bank}?filter=${tempo}&status=${"inativo"}`
+      );
+      setRecordErrors(response.data); // Supondo que a resposta contém os dados em 'data'
+      console.log(recordsErrors);
+    } catch (err) {
+      console.error("Ops! houve um erro: " + err);
+    }
+  };
 
   useEffect(() => {
     if (tempo && tipo && bank) {
       // Condição para evitar chamadas desnecessárias
       GetRecord(tipo, bank, tempo);
+      GetErroRecord(tipo, bank, tempo);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tempo, tipo, bank]);
@@ -74,7 +94,7 @@ const Main = () => {
               <Options options={optionsType} onChange={setTipo} />
             </div>
             <div className="mx-auto">
-              <p>Aplicar aqui o elemento de ativo ou não</p>
+              <p className="bg-white">Status real : {status}</p>
             </div>
             <div>
               <BasicSelect onChange={setTempo} />{" "}
@@ -84,7 +104,7 @@ const Main = () => {
         </div>
       </div>
       <div className="bg-[#262d47] mt-[50px]">
-        <Tabela />
+        <Tabela data={recordsErrors} bank={bank} />
       </div>
     </main>
   );
