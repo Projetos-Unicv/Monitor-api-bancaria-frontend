@@ -1,11 +1,11 @@
 export interface Record {
   id: number;
-  type: string;
+  Tipo: string;
   status: string;
-  codeResponse: number;
-  dateCreated: string;
-  timeRequest: 846;
+  CodigoDaResposta: number;
+  HoraDaConsulta: string;
+  TempoDeResposta: string;
   payloadResponse: object[];
-  detailing: string;
-  responseStatus: string;
+  Detalhamento: string;
+  StatusDaResposta: string;
 }

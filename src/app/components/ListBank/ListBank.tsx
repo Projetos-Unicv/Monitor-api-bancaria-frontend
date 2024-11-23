@@ -18,7 +18,11 @@ export const IconBank = ({ onChange }: PropsInterface) => {
   // Array de imagens dos bancos
   const banks = [
     { src: "../../../image/itau.svg", alt: "Itaú", value: "ITAU_V2" },
-    { src: "../../../image/nubank-3.svg", alt: "Nubank", value: "ITAU_V2" },
+    {
+      src: "../../../image/nubank-3.svg",
+      alt: "Nubank",
+      value: "ITAU_FRANCESA",
+    },
     {
       src: "../../../image/sicredi-160.svg",
       alt: "Sicredi",
@@ -69,9 +73,9 @@ export const IconBank = ({ onChange }: PropsInterface) => {
           <img src={bank.src} alt={bank.alt} />
           <div className="">
             <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-          </span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+            </span>
           </div>
         </div>
       ))}
