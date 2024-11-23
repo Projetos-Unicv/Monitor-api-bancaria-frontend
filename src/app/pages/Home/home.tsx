@@ -63,12 +63,12 @@ const Main = () => {
   }, [Records]);
 
   return (
-    <main className="min-h-screen bg-azul-medio flex flex-col">
-      <div className="flex flex-row justify-center">
-        <div className="bg-azul-medio md:flex items-center justify-center hidden">
+    <main className="min-h-screen bg-[##1b213b] flex flex-col p-10">
+      <div className="flex flex-row justify-center ">
+        <div className="bg-[#262d47] md:flex items-center justify-center hidden">
           <IconBank onChange={setBank} />
         </div>
-        <div className="flex flex-col w-full">
+        <div className="bg-[#262d47] flex flex-col w-full">
           <div className="md:flex flex-row pl-[4em] justify-between items-center hidden">
             <div className="flex flex-row justify-around">
               <Options options={optionsType} onChange={setTipo} />
@@ -83,7 +83,7 @@ const Main = () => {
           <Grafico data={Records} />
         </div>
       </div>
-      <div className="mt-[50px]">
+      <div className="bg-[#262d47] mt-[50px]">
         <Tabela />
       </div>
     </main>

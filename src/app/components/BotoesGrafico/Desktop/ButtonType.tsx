@@ -43,23 +43,23 @@ export const Options: React.FC<ColorToggleButtonProps> = ({
             key={option.value}
             value={option.value}
             sx={{
-              color: "white",
+              color: "yellowgreen",
 
               "&:hover": {
-                color: "black",
+                color: "yellowgreen",
                 backgroundColor: "transparent", // Cor de fundo no hover padrão
               },
 
-              border: `3px solid ${theme.palette.primary.main}`, // Borda do botão
+              border: `3px solid ${"yellowgreen"}`, // Borda do botão
 
               "&.Mui-selected": {
-                backgroundColor: theme.palette.primary.light, // Cor ao selecionar
-                color: theme.palette.secondary.contrastText, // Cor do texto ao selecionar
-                borderColor: "white",
+                backgroundColor: "yellowgreen", // Cor ao selecionar
+                color: "white", // Cor do texto ao selecionar
+                borderColor: "yellowgreen",
 
                 "&:hover": {
-                  backgroundColor: theme.palette.primary.light, // Manter cor de fundo ao passar o mouse quando selecionado
-                  color: theme.palette.secondary.contrastText,
+                  backgroundColor: "yellowgreen", // Manter cor de fundo ao passar o mouse quando selecionado
+                  color: "white",
                 },
               },
               width: "150px", // Largura fixa

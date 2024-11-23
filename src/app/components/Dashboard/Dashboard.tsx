@@ -19,7 +19,6 @@ export const Grafico = ({ data }: Iprops) => {
   const yTicks = ["Normal", "Lenta", "MuitoLenta", "Timeout", "Erro"];
 
   return (
-    <div style={{ width: "100%", height: "100%", minHeight: "300px" }}>
       <ResponsiveContainer
         width="100%"
         height="100%"
@@ -36,18 +35,18 @@ export const Grafico = ({ data }: Iprops) => {
         >
           <CartesianGrid stroke="#ccc" />
           <XAxis
-            dataKey="dateCreated"
+            dataKey="HoraDaConsulta"
             angle={window.innerWidth < 768 ? 0 : 20} // Ângulo adaptado para mobile
-            tickFormatter={(dateCreated) => {
-              return dateCreated.length > 10
-                ? `${dateCreated.substring(0, 10)}...`
-                : dateCreated;
+            tickFormatter={(HoraDaConsulta) => {
+              return HoraDaConsulta.length > 10
+                ? `${HoraDaConsulta.substring(0, 10)}...`
+                : HoraDaConsulta;
             }}
             style={{ fontSize: "0.8rem" }} // Texto menor para mobile
           />
           <YAxis
             type="category"
-            dataKey="responseStatus"
+            dataKey="StatusDaResposta"
             ticks={yTicks} // Mostra os ticks categóricos
             tickFormatter={(value) => value}
             style={{ fontSize: "0.8rem" }} // Texto menor
@@ -60,7 +59,7 @@ export const Grafico = ({ data }: Iprops) => {
           />
           <Line
             type="monotone"
-            dataKey="responseStatus"
+            dataKey="StatusDaResposta"
             stroke="#82ca9d"
             strokeWidth={2}
             dot={{ r: 4 }} // Pontos mais visíveis
@@ -68,7 +67,7 @@ export const Grafico = ({ data }: Iprops) => {
           />
           <Line
             type="monotone"
-            dataKey="timeRequest"
+            dataKey="TempoDeResposta"
             stroke="#8884d8"
             strokeWidth={2}
             dot={{ r: 4 }}
@@ -76,6 +75,5 @@ export const Grafico = ({ data }: Iprops) => {
           />
         </LineChart>
       </ResponsiveContainer>
-    </div>
   );
 };

@@ -23,9 +23,24 @@ export default function BasicSelect({ onChange }: BasicSelectProps) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ minWidth: 120, maxWidth: 120 }}>
+      <Box
+        sx={{
+          minWidth: 120,
+          maxWidth: 120,
+        }}
+      >
         <FormControl fullWidth variant="outlined">
-          <InputLabel id="demo-simple-select-label">Últimos(a)</InputLabel>
+          <InputLabel
+            id="demo-simple-select-label"
+            sx={{
+              color: "yellowgreen",
+              "&.Mui-focused": {
+                color: "yellowgreen", // Cor do label ao focar
+              },
+            }}
+          >
+            Últimos(a)
+          </InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -34,12 +49,24 @@ export default function BasicSelect({ onChange }: BasicSelectProps) {
             onChange={handleChange}
             IconComponent={ArrowDropDownIcon}
             sx={{
-
+              color: "yellowgreen",
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "yellowgreen", // Borda padrão
+              },
+              "&:hover .MuiOutlinedInput-notchedOutline": {
+                borderColor: "yellowgreen", // Borda ao passar o mouse
+              },
+              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "yellowgreen", // Borda ao focar
+              },
+              "&.Mui-focused": {
+                color: "yellowgreen", // Texto ao focar
+              },
             }}
           >
-            <MenuItem value={"DAY"}>24-HRS</MenuItem>
-            <MenuItem value={"WEEK"}>7-DIAS</MenuItem>
-            <MenuItem value={"MOUTH"}>30-DIAS</MenuItem>
+            <MenuItem value={"DAY"}>1 Dia</MenuItem>
+            <MenuItem value={"WEEK"}>7 Dias</MenuItem>
+            <MenuItem value={"MOUTH"}>30 Dias</MenuItem>
           </Select>
         </FormControl>
       </Box>
