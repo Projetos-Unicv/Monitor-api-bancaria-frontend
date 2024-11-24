@@ -14,7 +14,31 @@ interface Iprops {
 }
 
 export const Grafico = ({ data }: Iprops) => {
-  const yTicks = ["Normal", "Lenta", "MuitoLenta", "Timeout", "Erro"];
+  // Mapeamento para transformar os status em níveis numéricos
+  const statusLevels: { [key: string]: number } = {
+    Normal: 1,
+    Lenta: 2,
+    MuitoLenta: 3,
+    Timeout: 4,
+    Erro: 5,
+  };
+
+  // Transforma os dados para incluir o nível numérico
+  const processedData = data.map((item) => ({
+    ...item,
+    StatusLevel: statusLevels[item.StatusDaResposta], // Adiciona o nível numérico
+  }));
+
+  // Ordem dos ticks no eixo Y
+  const yTicks = [1, 2, 3, 4, 5];
+
+  // Mapeia os valores numéricos de volta para os rótulos de texto
+  const levelToStatus: globalThis.Record<number, string> = Object.entries(
+    statusLevels
+  ).reduce(
+    (acc, [status, level]) => ({ ...acc, [level]: status }),
+    {} as globalThis.Record<number, string>
+  );
 
   return (
     <ResponsiveContainer
@@ -23,7 +47,7 @@ export const Grafico = ({ data }: Iprops) => {
       aspect={window.innerWidth < 768 ? 1 : 2} // Proporção ajustada para mobile
     >
       <LineChart
-        data={data}
+        data={processedData}
         margin={{
           top: 20,
           right: 30,
@@ -43,10 +67,11 @@ export const Grafico = ({ data }: Iprops) => {
           style={{ fontSize: "0.8rem" }} // Texto menor para mobile
         />
         <YAxis
-          type="category"
-          dataKey="StatusDaResposta"
-          ticks={yTicks} // Mostra os ticks categóricos
-          tickFormatter={(value) => value}
+          type="number" // Trata como escala numérica
+          dataKey="StatusLevel" // Exibe os níveis numéricos
+          ticks={yTicks} // Mostra os ticks numéricos
+          tickFormatter={(value) => levelToStatus[value] || value} // Converte o nível numérico para o rótulo do status
+          domain={[1, 5]} // Define os limites do eixo Y
           style={{ fontSize: "0.8rem" }} // Texto menor
         />
         <Tooltip
@@ -54,10 +79,17 @@ export const Grafico = ({ data }: Iprops) => {
             fontSize: "0.8rem",
             borderRadius: "10px",
           }}
+          formatter={(value, name) => {
+            if (name === "StatusLevel") {
+              const level = value as number; // Garante que o TypeScript sabe que é um número
+              return [levelToStatus[level] || value, "Status"];
+            }
+            return [value, name];
+          }}
         />
         <Line
           type="monotone"
-          dataKey="StatusDaResposta"
+          dataKey="StatusLevel"
           stroke="#82ca9d"
           strokeWidth={2}
           dot={{ r: 4 }} // Pontos mais visíveis
