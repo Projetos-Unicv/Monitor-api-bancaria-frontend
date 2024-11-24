@@ -16,6 +16,7 @@ interface Iprops {
 export const Grafico = ({ data }: Iprops) => {
   // Mapeamento para transformar os status em níveis numéricos
   const statusLevels: { [key: string]: number } = {
+    "": 0,
     Normal: 1,
     Lenta: 2,
     MuitoLenta: 3,
@@ -30,7 +31,7 @@ export const Grafico = ({ data }: Iprops) => {
   }));
 
   // Ordem dos ticks no eixo Y
-  const yTicks = [1, 2, 3, 4, 5];
+  const yTicks = [0, 1, 2, 3, 4, 5];
 
   // Mapeia os valores numéricos de volta para os rótulos de texto
   const levelToStatus: globalThis.Record<number, string> = Object.entries(
@@ -58,21 +59,24 @@ export const Grafico = ({ data }: Iprops) => {
         <CartesianGrid stroke="#ccc" />
         <XAxis
           dataKey="HoraDaConsulta"
-          angle={window.innerWidth < 768 ? 0 : 20} // Ângulo adaptado para mobile
+          angle={window.innerWidth < 768 ? 0 : 20}
           tickFormatter={(HoraDaConsulta) => {
             return HoraDaConsulta.length > 10
               ? `${HoraDaConsulta.substring(0, 10)}...`
               : HoraDaConsulta;
           }}
-          style={{ fontSize: "0.8rem" }} // Texto menor para mobile
+          style={{ fontSize: "0.8rem" }}
+          dy={15} // Ajusta o deslocamento vertical dos rótulos
         />
         <YAxis
-          type="number" // Trata como escala numérica
-          dataKey="StatusLevel" // Exibe os níveis numéricos
-          ticks={yTicks} // Mostra os ticks numéricos
-          tickFormatter={(value) => levelToStatus[value] || value} // Converte o nível numérico para o rótulo do status
-          domain={[1, 5]} // Define os limites do eixo Y
-          style={{ fontSize: "0.8rem" }} // Texto menor
+          type="number"
+          dataKey="StatusLevel"
+          ticks={yTicks} // Inclui o nível 0
+          tickFormatter={(value) =>
+            value === 0 ? "" : levelToStatus[value] || value
+          } // Deixa o nível 0 vazio
+          domain={[0, 5]} // Inclui o nível 0 no domínio
+          style={{ fontSize: "0.8rem" }}
         />
         <Tooltip
           contentStyle={{
