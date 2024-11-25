@@ -9,16 +9,17 @@ import { ThemeProvider } from "@mui/material/styles";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 interface BasicSelectProps {
-  onChange: (value: string) => void; // Define a prop para passar a função de mudança
+  onChange: (value: string) => void; // Define uma função de mudança passada como prop
 }
 
 export default function BasicSelect({ onChange }: BasicSelectProps) {
-  const [data, setData] = React.useState("");
+  // Estado inicial configurado para "DAY", que corresponde à opção "1 Dia"
+  const [data, setData] = React.useState("DAY");
 
   const handleChange = (event: SelectChangeEvent) => {
     const newValue = event.target.value as string;
     setData(newValue);
-    onChange(newValue); // Chama a função passada como prop
+    onChange(newValue); // Chama a função passada como prop para atualizar o valor
   };
 
   return (
@@ -45,7 +46,7 @@ export default function BasicSelect({ onChange }: BasicSelectProps) {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={data}
+            value={data} // O valor de "data" já está sendo passado aqui
             label="data"
             onChange={handleChange}
             IconComponent={ArrowDropDownIcon}
@@ -63,13 +64,9 @@ export default function BasicSelect({ onChange }: BasicSelectProps) {
               "&.Mui-focused": {
                 color: "yellowgreen", // Texto ao focar
               },
-              // Responsividade para dispositivos menores que 600px (mobile)
-              "@media (max-width: 600px)": {
-                minWidth: "100%", // Faz o seletor ocupar 100% da largura da tela em dispositivos móveis
-              },
             }}
           >
-            <MenuItem value={"DAY"}>1 Dia</MenuItem>
+            <MenuItem value={"DAY"}>1 Dia</MenuItem> {/* Valor inicial */}
             <MenuItem value={"WEEK"}>7 Dias</MenuItem>
             <MenuItem value={"MOUTH"}>30 Dias</MenuItem>
           </Select>

@@ -7,9 +7,8 @@ interface IpropsErro {
 }
 
 export const Tabela: React.FC<IpropsErro> = ({ data, bank }) => {
-  console.log(bank);
   return (
-    <div className="md:pl-[12em]">
+    <div className="w-full mx-auto p-4">
       <div className="overflow-hidden bg-white border border-gray-200 shadow-md rounded-lg">
         <div className="bg-indigo-950 text-white text-center font-bold uppercase py-3">
           Detalhamento de Erros: {bank}
@@ -94,7 +93,9 @@ export const Tabela: React.FC<IpropsErro> = ({ data, bank }) => {
                 </div>
                 <div className="flex justify-between text-sm mt-2">
                   <span className="font-bold text-gray-700">Status:</span>
-                  <span className="text-gray-500">{registro.StatusDaResposta}</span>
+                  <span className="text-gray-500">
+                    {registro.StatusDaResposta}
+                  </span>
                 </div>
               </div>
             ))

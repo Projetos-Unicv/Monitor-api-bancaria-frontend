@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 interface PropsInterface {
   onChange: (value: string) => void;
@@ -8,107 +8,110 @@ export const IconBank = ({ onChange }: PropsInterface) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
-  // Lista de bancos
-  const banks = [
-    { src: "../../../image/Itau_V2.svg", alt: "Itaú", value: "ITAU_V2" },
-    {
-      src: "../../../image/Itau_Francesa.svg",
-      alt: "Itaú Francesa",
-      value: "ITAU_FRANCESA",
-    },
-    {
-      src: "../../../image/Sicredi_V2.svg",
-      alt: "Sicredi",
-      value: "SICREDI_V2",
-    },
-    {
-      src: "../../../image/Sicredi_V3.svg",
-      alt: "Sicredi V3",
-      value: "SICREDI_V3",
-    },
-    {
-      src: "../../../image/Banco_do_Brasil.svg",
-      alt: "Banco do Brasil",
-      value: "BANCODOBRASIL_V2",
-    },
-    { src: "../../../image/Inter.svg", alt: "Banco Inter", value: "INTER" },
-    { src: "../../../image/Sicoob_V2.svg", alt: "Sicoob", value: "SICOOB_V2" },
-    {
-      src: "../../../image/Santander_V2.svg",
-      alt: "Santander",
-      value: "SANTANDER",
-    },
-    {
-      src: "../../../image/Caixa.svg",
-      alt: "Caixa Econômica Federal",
-      value: "CAIXA",
-    },
-    { src: "../../../image/Banrisul.svg", alt: "Banrisul", value: "BANRISUL" },
-  ];
+  const banks = useMemo(
+    () => [
+      { src: "../../../image/Itau_V2.svg", alt: "Itaú", value: "ITAU_V2" },
+      {
+        src: "../../../image/Itau_Francesa.svg",
+        alt: "Itaú Francesa",
+        value: "ITAU_FRANCESA",
+      },
+      {
+        src: "../../../image/Sicredi_V2.svg",
+        alt: "Sicredi",
+        value: "SICREDI_V2",
+      },
+      {
+        src: "../../../image/Sicredi_V3.svg",
+        alt: "Sicredi V3",
+        value: "SICREDI_V3",
+      },
+      {
+        src: "../../../image/Banco_do_Brasil.svg",
+        alt: "Banco do Brasil",
+        value: "BANCODOBRASIL_V2",
+      },
+      { src: "../../../image/Inter.svg", alt: "Banco Inter", value: "INTER" },
+      {
+        src: "../../../image/Sicoob_V2.svg",
+        alt: "Sicoob",
+        value: "SICOOB_V2",
+      },
+      {
+        src: "../../../image/Santander_V2.svg",
+        alt: "Santander",
+        value: "SANTANDER",
+      },
+      {
+        src: "../../../image/Caixa.svg",
+        alt: "Caixa Econômica",
+        value: "CAIXA",
+      },
+      {
+        src: "../../../image/Banrisul.svg",
+        alt: "Banrisul",
+        value: "BANRISUL",
+      },
+    ],
+    []
+  );
 
+  // Ao iniciar o componente, definimos o banco padrão como "ITAU_V2"
   useEffect(() => {
-    // Encontrar o índice do item "ITAU_V2" e definir como o index ativo
     const defaultIndex = banks.findIndex((bank) => bank.value === "ITAU_V2");
-    setActiveIndex(defaultIndex); // Define o item "ITAU_V2" como selecionado
-    onChange(banks[defaultIndex].value); // Passa o valor do banco para o onChange
-  }, []);
+    setActiveIndex(defaultIndex);
+    onChange(banks[defaultIndex].value);
+  }, [banks, onChange]);
 
   const handleIconClick = (index: number, bank: string) => {
-    setActiveIndex(index);
-    onChange(bank);
+    setActiveIndex(index); // Atualiza o índice ativo
+    onChange(bank); // Chama o onChange com o novo banco
   };
 
   const handleDropdownClick = () => {
-    setIsDropdownOpen(!isDropdownOpen); // Alterna a visibilidade do dropdown no mobile
+    setIsDropdownOpen(!isDropdownOpen); // Alterna o estado do dropdown
   };
 
   const handleSelectChange = (bank: string) => {
-    setIsDropdownOpen(false); // Fecha o dropdown após a seleção
-    onChange(bank);
+    setIsDropdownOpen(false); // Fecha o dropdown após selecionar
+    const index = banks.findIndex((b) => b.value === bank);
+    setActiveIndex(index); // Atualiza o índice ativo
+    onChange(bank); // Chama o onChange com o novo banco
   };
+
+  const activeBank = banks[activeIndex ?? 0]; // Banco ativo com base no índice
 
   return (
     <div className="relative">
       {/* Dropdown para telas móveis */}
       <div
-        className="sm:hidden w-full p-3 bg-white border border-gray-300 rounded-md cursor-pointer"
+        className="sm:hidden w-full p-4 bg-white border border-gray-300 rounded-md cursor-pointer"
         onClick={handleDropdownClick}
       >
-        <div className="flex items-center">
-          {banks.find((bank) => bank.value === banks[activeIndex ?? 0].value)
-            ?.src && (
+        <div className="flex items-center space-x-4">
+          {activeBank?.src && (
             <img
-              src={
-                banks.find(
-                  (bank) => bank.value === banks[activeIndex ?? 0].value
-                )?.src
-              }
-              alt={
-                banks.find(
-                  (bank) => bank.value === banks[activeIndex ?? 0].value
-                )?.alt
-              }
-              className="w-8 h-8 mr-2"
+              src={activeBank.src}
+              alt={activeBank.alt}
+              className="w-8 h-8 mr-4" // Imagem maior no mobile
             />
           )}
-          <span>
-            {
-              banks.find((bank) => bank.value === banks[activeIndex ?? 0].value)
-                ?.alt
-            }
-          </span>
+          <span className="text-lg font-medium">{activeBank?.alt}</span>{" "}
+          {/* Aumento do tamanho da fonte */}
         </div>
 
         {isDropdownOpen && (
-          <div className="absolute mt-2 w-full bg-white shadow-lg rounded-lg z-10">
+          <div className="absolute mt-4 w-full bg-white shadow-lg rounded-lg z-10 max-h-96 overflow-auto">
             {banks.map((bank) => (
               <div
                 key={bank.value}
-                className="flex items-center p-3 hover:bg-gray-100 cursor-pointer"
+                className="flex items-center p-4 hover:bg-gray-100 cursor-pointer"
                 onClick={() => handleSelectChange(bank.value)}
               >
-                <img src={bank.src} alt={bank.alt} className="w-8 h-8 mr-2" />
-                <span>{bank.alt}</span>
+                <img src={bank.src} alt={bank.alt} className="w-10 h-10 mr-4" />{" "}
+                {/* Imagem maior */}
+                <span className="text-lg">{bank.alt}</span>{" "}
+                {/* Aumento do tamanho da fonte */}
               </div>
             ))}
           </div>
@@ -130,7 +133,7 @@ export const IconBank = ({ onChange }: PropsInterface) => {
             <img
               src={bank.src}
               alt={bank.alt}
-              className={`w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 transition-transform ${
+              className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 transition-transform ${
                 activeIndex === index ? "scale-110" : "hover:scale-105"
               }`}
             />
