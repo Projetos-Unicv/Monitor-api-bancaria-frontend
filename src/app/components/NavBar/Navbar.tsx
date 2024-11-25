@@ -1,7 +1,6 @@
 import { useState } from "react";
 import ButtonSplirTypeMobile from "../BotoesGrafico/Mobile/ButtonTypeMobile";
 import ButtonSplirDataMobile from "../BotoesGrafico/Mobile/ButtonDateMobile";
-import ListaBancoMobile from "../BotoesGrafico/Mobile/ListaBancoMobile";
 
 export const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -54,8 +53,9 @@ export const NavBar = () => {
       </button>
 
       <aside
-        className={`fixed top-0 left-0 h-full w-64 bg-blue-600 text-white transform transition-transform z-40 md:hidden ${menuOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
+        className={`fixed top-0 left-0 h-full w-64 bg-blue-600 text-white transform transition-transform z-40 md:hidden ${
+          menuOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
       >
         <div className="flex items-center justify-between p-4 border-b border-blue-400">
           <span className="text-xl font-semibold">Menu</span>
@@ -79,19 +79,6 @@ export const NavBar = () => {
             </svg>
           </button>
         </div>
-        <nav className="mt-4">
-          <ul className="space-y-2">
-            <li>
-              <ListaBancoMobile onChange={handleBankChange} />
-            </li>
-            <li>
-              <ButtonSplirTypeMobile />
-            </li>
-            <li>
-              <ButtonSplirDataMobile />
-            </li>
-          </ul>
-        </nav>
       </aside>
 
       {menuOpen && (

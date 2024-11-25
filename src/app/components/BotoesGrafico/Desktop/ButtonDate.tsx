@@ -26,7 +26,8 @@ export default function BasicSelect({ onChange }: BasicSelectProps) {
       <Box
         sx={{
           minWidth: 120,
-          maxWidth: 120,
+          width: "100%", // Faz com que o seletor ocupe toda a largura possível
+          maxWidth: 320, // Limita o máximo para não ficar muito grande
         }}
       >
         <FormControl fullWidth variant="outlined">
@@ -61,6 +62,10 @@ export default function BasicSelect({ onChange }: BasicSelectProps) {
               },
               "&.Mui-focused": {
                 color: "yellowgreen", // Texto ao focar
+              },
+              // Responsividade para dispositivos menores que 600px (mobile)
+              "@media (max-width: 600px)": {
+                minWidth: "100%", // Faz o seletor ocupar 100% da largura da tela em dispositivos móveis
               },
             }}
           >
