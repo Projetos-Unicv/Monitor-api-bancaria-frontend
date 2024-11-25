@@ -5,15 +5,7 @@ import ListaBancoMobile from "../BotoesGrafico/Mobile/ListaBancoMobile";
 
 export const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [tempo, setTempo] = useState("");
-  const [tipo, setTipo] = useState("");
   const [bank, setBank] = useState(""); // Estado corrigido
-  const [status, setStatus] = useState("");
-
-  const optionsType = [
-    { value: "registro", label: "Registro" },
-    { value: "consulta", label: "Consulta" },
-  ];
 
   // Corrigindo o uso do estado para banco selecionado
   const handleBankChange = (bankValue: string) => {
@@ -22,8 +14,7 @@ export const NavBar = () => {
   };
 
   return (
-    <nav className="flex flex-wrap items-center justify-between p-4 border-gray-200 bg-[#0353b3]">
-      {/* Logo e Título */}
+    <nav className="flex flex-wrap items-center justify-between p-4 border-gray-200 bg-[#1b213b]">
       <a
         href="https://tecnospeed.com.br/"
         className="flex items-center space-x-3 rtl:space-x-reverse"
@@ -62,7 +53,6 @@ export const NavBar = () => {
         </svg>
       </button>
 
-      {/* Menu Lateral para Mobile */}
       <aside
         className={`fixed top-0 left-0 h-full w-64 bg-blue-600 text-white transform transition-transform z-40 md:hidden ${menuOpen ? "translate-x-0" : "-translate-x-full"
           }`}
@@ -104,7 +94,6 @@ export const NavBar = () => {
         </nav>
       </aside>
 
-      {/* Overlay para fechar o menu no mobile */}
       {menuOpen && (
         <div
           onClick={() => setMenuOpen(false)}

@@ -83,18 +83,18 @@ const Main = () => {
   }, [Records]);
 
   return (
-    <main className="min-h-screen bg-[##1b213b] flex flex-col p-10">
+    <main className="min-h-screen bg-[#1b213b] flex flex-col md:p-10">
       <div className="flex flex-row justify-center ">
         <div className="bg-[#262d47] md:flex items-center justify-center hidden">
           <IconBank onChange={setBank} />
         </div>
-        <div className="bg-[#262d47] flex flex-col w-full">
+        <div className="bg-[#262d47] flex flex-col w-full p-4">
           <div className="md:flex flex-row pl-[4em] justify-between items-center hidden">
             <div className="flex flex-row justify-around">
               <Options options={optionsType} onChange={setTipo} />
             </div>
-            <div className="mx-auto">
-              <p className="bg-white">Status real : {status}</p>
+            <div className={`flex items-center justify-center space-x-2 p-3 rounded-md shadow-md ${status === "ativo" ? "bg-green-500 text-white" : "bg-red-500 text-white"}`}>
+              <p>{status === "ativo" ? "Banco ativo" : "Banco não ativo"}</p>
             </div>
             <div>
               <BasicSelect onChange={setTempo} />{" "}

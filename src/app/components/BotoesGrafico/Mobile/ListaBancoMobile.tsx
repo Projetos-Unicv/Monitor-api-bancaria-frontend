@@ -11,15 +11,47 @@ interface PropsInterface {
 }
 
 const banks = [
-  { src: "/image/itau.svg", alt: "Itaú", value: "ITAU_V2" },
-  { src: "/image/nubank-3.svg", alt: "Nubank", value: "NUBANK" },
-  { src: "/image/sicredi-160.svg", alt: "Sicredi", value: "SICREDI_V2" },
-  { src: "/image/banco-do-brasil-3.svg", alt: "Banco do Brasil", value: "BANCODOBRASIL_V2" },
-  { src: "/image/banco-inter-logo.svg", alt: "Banco Inter", value: "INTER" },
-  { src: "/image/sicoob-vector-logo.svg", alt: "Sicoob", value: "SICOOB_V2" },
-  { src: "/image/santander1.svg", alt: "Santander", value: "SANTANDER" },
-  { src: "/image/caixa-economica-federal-1.svg", alt: "Caixa Econômica Federal", value: "CAIXA" },
-  { src: "/image/banrisul-logo.svg", alt: "Banrisul", value: "BANRISUL" },
+  { src: "../../../image/Itau_V2.svg", alt: "Itaú", value: "ITAU_V2" },
+  {
+    src: "../../../image/Itau_Francesa.svg",
+    alt: "Nubank",
+    value: "ITAU_FRANCESA",
+  },
+  {
+    src: "../../../image/Sicredi_V2.svg",
+    alt: "Sicredi",
+    value: "SICREDI_V2",
+  },
+  {
+    src: "../../../image/Banco_do_Brasil.svg",
+    alt: "Banco do Brasil",
+    value: "BANCODOBRASIL_V2",
+  },
+  {
+    src: "../../../image/Inter.svg",
+    alt: "Banco Inter",
+    value: "INTER",
+  },
+  {
+    src: "../../../image/Sicoob_V2.svg",
+    alt: "Sicoob",
+    value: "SICOOB_V2",
+  },
+  {
+    src: "../../../image/Santander_V2.svg",
+    alt: "Santander",
+    value: "SANTANDER",
+  },
+  {
+    src: "../../../image/Caixa.svg",
+    alt: "Caixa Econômica Federal",
+    value: "CAIXA",
+  },
+  {
+    src: "../../../image/Banrisul.svg",
+    alt: "Banrisul",
+    value: "BANRISUL",
+  },
 ];
 
 const ListaBancoMobile = ({ onChange }: PropsInterface) => {
@@ -59,7 +91,7 @@ const ListaBancoMobile = ({ onChange }: PropsInterface) => {
           <img
             src={banks[selectedIndex].src}
             alt={banks[selectedIndex].alt}
-            style={{ width: 24, height: 24, marginRight: 8 }}
+            style={{ width: 44, height: 44, marginRight: 8 }}
           />
           {banks[selectedIndex].alt}
         </Button>
@@ -88,7 +120,7 @@ const ListaBancoMobile = ({ onChange }: PropsInterface) => {
             <img
               src={bank.src}
               alt={bank.alt}
-              style={{ width: 24, height: 24, marginRight: 8 }}
+              style={{ width: 44, height: 44, marginRight: 8 }}
             />
             {bank.alt}
           </MenuItem>

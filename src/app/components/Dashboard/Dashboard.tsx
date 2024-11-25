@@ -45,7 +45,7 @@ export const Grafico = ({ data }: Iprops) => {
     <ResponsiveContainer
       width="100%"
       height="100%"
-      aspect={window.innerWidth < 768 ? 1 : 2} // Proporção ajustada para mobile
+      aspect={window.innerWidth < 768 ? 0.6 : 2} // Proporção ajustada para mobile
     >
       <LineChart
         data={processedData}
