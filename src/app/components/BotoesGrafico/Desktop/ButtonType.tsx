@@ -62,7 +62,7 @@ export const Options: React.FC<ColorToggleButtonProps> = ({
                   color: "white",
                 },
               },
-              width: "150px", // Largura fixa
+              width: "100px", // Largura fixa
               height: "50px", // Altura fixa
               fontSize: "16px", // Tamanho da fonte
             }}

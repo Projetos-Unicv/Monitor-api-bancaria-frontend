@@ -119,31 +119,33 @@ export const IconBank = ({ onChange }: PropsInterface) => {
       </div>
 
       {/* Ícones de bancos para telas grandes (desktop) */}
-      <div className="hidden sm:flex sm:flex-wrap justify-start gap-4 p-4">
+      <div className="hidden sm:flex sm:flex-wrap justify-start gap-4">
         {banks.map((bank, index) => (
           <div
             key={index}
-            className={`relative flex flex-col items-center justify-center p-3 rounded-lg transition-all cursor-pointer shadow-md ${
-              activeIndex === index
-                ? "bg-blue-100 border-2 border-blue-500 scale-105"
-                : "hover:bg-gray-100"
-            }`}
+            className={`w-36 h-36 relative flex flex-col items-center justify-center p-3 rounded-lg transition-all cursor-pointer shadow-md ${activeIndex === index
+              ? "bg-blue-100 border-2 border-blue-500 scale-105"
+              : "hover:bg-gray-100"
+              }`}
             onClick={() => handleIconClick(index, bank.value)}
           >
             <img
               src={bank.src}
               alt={bank.alt}
-              className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 transition-transform ${
-                activeIndex === index ? "scale-110" : "hover:scale-105"
-              }`}
+              className={`w-12 h-12 sm:w-14 sm:h-14 md:w-20 md:h-20 transition-transform ${activeIndex === index ? "scale-110" : "hover:scale-105"
+                }`}
             />
-            <p
-              className={`mt-2 text-xs sm:text-sm md:text-base font-medium ${
-                activeIndex === index ? "text-blue-500" : "text-gray-400"
-              }`}
-            >
-              {bank.alt}
-            </p>
+            <div className="flex flex-col text-center">
+              {/* Nome do banco */}
+              <p
+                className={`text-sm font-semibold ${activeIndex === index ? "text-blue-500" : "text-gray-400"}`}
+              >
+                {bank.alt}
+              </p>
+              <div>
+                <p className="text-sm font-medium text-lime-500 leading-none">Ativo</  p>
+              </div>
+            </div>
           </div>
         ))}
       </div>

@@ -42,6 +42,11 @@ export const Grafico = ({ data }: Iprops) => {
   );
 
   return (
+    <><div className="pl-[4em] p-6">
+      <p className="text-white">
+        Nome do banco
+      </p>
+    </div>
     <ResponsiveContainer
       width="100%"
       height="100%"
@@ -64,7 +69,7 @@ export const Grafico = ({ data }: Iprops) => {
             return HoraDaConsulta.length > 10
               ? `${HoraDaConsulta.substring(0, 10)}...`
               : HoraDaConsulta;
-          }}
+          } }
           style={{ fontSize: "0.8rem" }}
           dy={15} // Ajusta o deslocamento vertical dos rótulos
         />
@@ -72,16 +77,15 @@ export const Grafico = ({ data }: Iprops) => {
           type="number"
           dataKey="StatusLevel"
           ticks={yTicks} // Inclui o nível 0
-          tickFormatter={(value) =>
-            value === 0 ? "" : levelToStatus[value] || value
-          } // Deixa o nível 0 vazio
+          tickFormatter={(value) => value === 0 ? "" : levelToStatus[value] || value} // Deixa o nível 0 vazio
           domain={[0, 5]} // Inclui o nível 0 no domínio
-          style={{ fontSize: "0.8rem" }}
-        />
+          style={{ fontSize: "0.8rem" }} />
         <Tooltip
           contentStyle={{
             fontSize: "0.8rem",
             borderRadius: "10px",
+            backgroundColor: "black",
+            color: "white"
           }}
           formatter={(value, name) => {
             if (name === "StatusLevel") {
@@ -89,8 +93,7 @@ export const Grafico = ({ data }: Iprops) => {
               return [levelToStatus[level] || value, "Status"];
             }
             return [value, name];
-          }}
-        />
+          } } />
         <Line
           type="monotone"
           dataKey="StatusLevel"
@@ -105,9 +108,8 @@ export const Grafico = ({ data }: Iprops) => {
           stroke="#8884d8"
           strokeWidth={2}
           dot={{ r: 4 }}
-          activeDot={{ r: 6 }}
-        />
+          activeDot={{ r: 6 }} />
       </LineChart>
-    </ResponsiveContainer>
+    </ResponsiveContainer></>
   );
 };

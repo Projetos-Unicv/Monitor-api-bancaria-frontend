@@ -66,77 +66,24 @@ const Main = () => {
   }, [Records]);
 
   return (
-    <main className="min-h-screen bg-[#1b213b] flex flex-col md:p-10">
-      <div className="bg-[#262d47] p-4 mb-6">
+    <main className="min-h-screen bg-[#1b213b] flex flex-col md:p-2">
+      <div className="bg-[#262d47] p-2 mb-6 hidden md:block">
         <div className="flex justify-center">
           <IconBank onChange={setBank} />
         </div>
       </div>
 
       <div className="bg-[#262d47] flex flex-col w-full p-4">
-        <div className="flex flex-col md:flex-row pl-[1em] md:pl-[4em] justify-between items-center space-y-4 md:space-y-0">
+        <div className="flex flex-col md:flex-row pl-[1em] md:pl-[4em] md:pr-[2em] justify-between items-center space-y-4 md:space-y-0">
           <div className="flex flex-row justify-around w-full md:w-auto">
             <Options options={optionsType} onChange={setTipo} />
           </div>
-
-          {status && (
-            <div
-              className={`flex flex-col md:flex-row items-center justify-center space-x-3 p-4 rounded-lg shadow-lg transition-all ${
-                status === "ativo"
-                  ? "bg-green-600 text-white hover:bg-green-700"
-                  : "bg-red-600 text-white hover:bg-red-700"
-              }`}
-            >
-              <div className="flex items-center space-x-2">
-                {status === "ativo" ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 h-6 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 h-6 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                )}
-                <p className="font-medium text-lg">
-                  {status === "ativo"
-                    ? "Disponivel"
-                    : status === "inativo"
-                    ? "Não disponivel"
-                    : "Status desconhecido"}
-                </p>
-              </div>
-            </div>
-          )}
-
           <div className="w-full md:w-auto">
             <BasicSelect onChange={setTempo} />
           </div>
         </div>
         <Grafico data={Records} />
       </div>
-
       <div className="bg-[#262d47] p-4 mt-6 rounded-lg shadow-lg">
         <Advertising />
       </div>
