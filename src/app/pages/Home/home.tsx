@@ -67,18 +67,13 @@ const Main = () => {
 
   return (
     <main className="min-h-screen bg-[#1b213b] flex flex-col md:p-2">
-<<<<<<< HEAD
       {/* Container do Banco */}
       <div className="bg-[#262d47] p-2 mb-3">
-=======
-      <div className="bg-[#262d47] p-2 mb-6 hidden md:block">
->>>>>>> 3ab3abcd2cc9cbda46c9a559d82a15b8ee2bb099
         <div className="flex justify-center">
           <IconBank onChange={setBank} />
         </div>
       </div>
 
-<<<<<<< HEAD
       {/* Conteúdo Principal */}
       <div className="bg-[#262d47] flex flex-col w-full p-4 flex-1">
         {/* Filtros e Status */}
@@ -104,20 +99,6 @@ const Main = () => {
         </div>
       </div>
       <div className="bg-[#262d47] p-4 mt-4 rounded-lg shadow-lg">
-=======
-      <div className="bg-[#262d47] flex flex-col w-full p-4">
-        <div className="flex flex-col md:flex-row pl-[1em] md:pl-[4em] md:pr-[2em] justify-between items-center space-y-4 md:space-y-0">
-          <div className="flex flex-row justify-around w-full md:w-auto">
-            <Options options={optionsType} onChange={setTipo} />
-          </div>
-          <div className="w-full md:w-auto">
-            <BasicSelect onChange={setTempo} />
-          </div>
-        </div>
-        <Grafico data={Records} />
-      </div>
-      <div className="bg-[#262d47] p-4 mt-6 rounded-lg shadow-lg">
->>>>>>> 3ab3abcd2cc9cbda46c9a559d82a15b8ee2bb099
         <Advertising />
       </div>
       {/* Tabela */}
