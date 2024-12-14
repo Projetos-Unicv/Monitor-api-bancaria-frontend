@@ -28,16 +28,19 @@ export default function BasicSelect({ onChange }: BasicSelectProps) {
         sx={{
           minWidth: 150,
           width: "100%", // Faz com que o seletor ocupe toda a largura possível
-          // maxWidth: 320, // Limita o máximo para não ficar muito grande
         }}
       >
-        <FormControl fullWidth variant="outlined">
+        <FormControl fullWidth variant="outlined" sx={{ marginTop: "20px" }}>
           <InputLabel
             id="demo-simple-select-label"
             sx={{
-              color: "yellowgreen",
+              color: "#d3d3d3", // Cor do label
               "&.Mui-focused": {
-                color: "yellowgreen", // Cor do label ao focar
+                color: "#d3d3d3", // Cor do label ao focar
+              },
+              "&.MuiInputLabel-shrink": {
+                color: "#d3d3d3", // Cor do label quando encolhido
+                transform: "translate(14px, -6px) scale(0.75)", // Ajuste para evitar sobreposição
               },
             }}
           >
@@ -47,27 +50,28 @@ export default function BasicSelect({ onChange }: BasicSelectProps) {
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={data} // O valor de "data" já está sendo passado aqui
-            label="data"
+            label="Periodo"
             size="small"
             onChange={handleChange}
             IconComponent={ArrowDropDownIcon}
             sx={{
-              color: "yellowgreen",
+              color: "#d3d3d3", // Cor do texto
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "yellowgreen", // Borda padrão
+                borderColor: "white", // Cor da borda
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "yellowgreen", // Borda ao passar o mouse
+                borderColor: "white", // Borda ao passar o mouse
               },
               "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "yellowgreen", // Borda ao focar
+                borderColor: "white", // Borda ao focar
               },
               "&.Mui-focused": {
-                color: "yellowgreen", // Texto ao focar
+                color: "white", // Texto ao focar
               },
+              minWidth: 150, // Define a largura mínima igual ao ToggleButton
             }}
           >
-            <MenuItem value={"DAY"}>1 Dia</MenuItem> {/* Valor inicial */}
+            <MenuItem value={"DAY"}>1 Dia</MenuItem>
             <MenuItem value={"WEEK"}>7 Dias</MenuItem>
             <MenuItem value={"MOUTH"}>30 Dias</MenuItem>
           </Select>

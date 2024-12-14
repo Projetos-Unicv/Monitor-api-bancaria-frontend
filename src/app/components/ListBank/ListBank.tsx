@@ -7,7 +7,6 @@ interface PropsInterface {
 
 export const IconBank = ({ onChange }: PropsInterface) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [bankStatuses, setBankStatuses] = useState<{ [key: string]: string }>(
     {}
   );
@@ -94,11 +93,6 @@ export const IconBank = ({ onChange }: PropsInterface) => {
     };
   }, [banks, onChange]);
 
-  // Lida com a abertura e fechamento do dropdown
-  const handleDropdownClick = () => {
-    setIsDropdownOpen(!isDropdownOpen); // Alterna o estado do dropdown
-  };
-
   // Atualiza o banco ativo e executa a busca do status
   const handleIconClick = (index: number, bank: string) => {
     setActiveIndex(index); // Atualiza o índice ativo
@@ -107,51 +101,18 @@ export const IconBank = ({ onChange }: PropsInterface) => {
   };
 
   // Atualiza o banco ativo e executa a busca do status ao selecionar um banco
-  const handleSelectChange = (bank: string) => {
-    setIsDropdownOpen(false); // Fecha o dropdown após selecionar
-    const index = banks.findIndex((b) => b.value === bank);
-    setActiveIndex(index); // Atualiza o índice ativo
-    onChange(bank); // Chama o onChange com o novo banco
-    checkAllBanksStatus(); // Verifica o status após a mudança do banco
-  };
+  // const handleSelectChange = (bank: string) => {
+  //   const index = banks.findIndex((b) => b.value === bank);
+  //   setActiveIndex(index); // Atualiza o índice ativo
+  //   onChange(bank); // Chama o onChange com o novo banco
+  //   checkAllBanksStatus(); // Verifica o status após a mudança do banco
+  // };
 
-  const activeBank = banks[activeIndex ?? 0]; // Banco ativo com base no índice
+  // const activeBank = banks[activeIndex ?? 0]; // Banco ativo com base no índice
 
   return (
     <div className="relative">
-      {/* Dropdown para telas móveis */}
-      <div
-        className="sm:hidden w-full p-4 bg-white border border-gray-300 rounded-md cursor-pointer"
-        onClick={handleDropdownClick}
-      >
-        <div className="flex items-center space-x-4">
-          {activeBank?.src && (
-            <img
-              src={activeBank.src}
-              alt={activeBank.alt}
-              className="w-8 h-8 mr-4" // Imagem maior no mobile
-            />
-          )}
-          <span className="text-lg font-medium">{activeBank?.alt}</span>
-        </div>
-
-        {isDropdownOpen && (
-          <div className="absolute mt-4 w-full bg-white shadow-lg rounded-lg z-10 max-h-96 overflow-auto">
-            {banks.map((bank) => (
-              <div
-                key={bank.value}
-                className="flex items-center p-4 hover:bg-gray-100 cursor-pointer"
-                onClick={() => handleSelectChange(bank.value)}
-              >
-                <img src={bank.src} alt={bank.alt} className="w-10 h-10 mr-4" />
-                <span className="text-lg">{bank.alt}</span>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Ícones de bancos para telas grandes (desktop) */}
+      {/* Nada é renderizado em telas móveis */}
       <div className="hidden sm:flex sm:flex-wrap justify-start gap-8 p-1">
         {banks.map((bank, index) => (
           <div

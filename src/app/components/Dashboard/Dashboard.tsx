@@ -42,9 +42,6 @@ export const Grafico = ({ data }: Iprops) => {
   );
   return (
     <>
-      <div className="pl-[4em] p-6">
-        <p className="text-white">Nome do banco</p>
-      </div>
       <ResponsiveContainer
         width="101%"
         height={250} // Altura configurada fixa

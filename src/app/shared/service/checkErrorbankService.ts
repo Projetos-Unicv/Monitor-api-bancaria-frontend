@@ -9,13 +9,10 @@ export const checkErrorbank = async (namebank: string): Promise<string> => {
   // Atribui os dados das respostas
   const Registro: Record[] = responseApi.data;
   const Consulta: Record[] = responseApi2.data;
-  console.log(Consulta);
   // Verifica os status
   const statusRegistro = await FindStatusByLast(Registro);
   const statusConsulta = await FindStatusByLast(Consulta);
 
-  // console.log(`banco:${namebank} - registro: ${statusRegistro}`);
-  console.log(`banco:${namebank} - consulta: ${statusConsulta}`);
   // Verifica se algum dos status é "inativo"
   if (statusConsulta === "inativo" || statusRegistro === "inativo") {
     return "Offline";

@@ -5,7 +5,6 @@ export const FindStatusByLast = async (data: Record[]): Promise<string> => {
   if (data && data.length > 0) {
     // Acessa diretamente o status do primeiro (único) registro
     const status = data[0].Status; // Aqui acessamos o "Status"
-    console.log(status); // Imprime o status no console
     return status; // Retorna o status ou "Testando" caso esteja undefined ou falsy
   } else {
     return "Erro"; // Retorna "Testando" se 'data' estiver vazio ou undefined

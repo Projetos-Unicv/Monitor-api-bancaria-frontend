@@ -4,35 +4,44 @@ import { IconBank } from "../../components/ListBank/ListBank";
 import { Grafico } from "../../components/Dashboard/Dashboard";
 import { Options } from "../../components/BotoesGrafico/Desktop/ButtonType";
 import BasicSelect from "../../components/BotoesGrafico/Desktop/ButtonDate";
-// import { FindStatusByLast } from "../../shared/service/FindStatus";
 import { useEffect, useState } from "react";
 import { Record } from "../../shared/interfaces/Record-Interface";
 import api from "../../api/api";
 import Tabela from "../../components/TableError/Table";
 import Advertising from "../../components/Advertising/Advertising";
 
-const Main = () => {
+const Main = ({
+  bank,
+  setBank,
+}: {
+  bank: string;
+  setBank: (value: string) => void;
+}) => {
   const [Records, setRecords] = useState<Record[]>([]);
   const [recordsErrors, setRecordErrors] = useState<Record[]>([]);
   const [tempo, setTempo] = useState("DAY");
   const [tipo, setTipo] = useState("registro");
-  const [bank, setBank] = useState("ITAU_V2");
-  // const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false); // Estado de carregamento
+
   const optionsType = [
     { value: "registro", label: "Registro" },
     { value: "consulta", label: "Consulta" },
   ];
 
   const GetRecord = async (type: string, bank: string, tempo: string) => {
+    setLoading(true);
     try {
       const response = await api.get(`${type}/${bank}?filter=${tempo}`);
       setRecords(response.data);
     } catch (err) {
       console.error("Ops! houve um erro: " + err);
+    } finally {
+      setLoading(false);
     }
   };
 
   const GetErroRecord = async (type: string, bank: string, tempo: string) => {
+    setLoading(true);
     try {
       const response = await api.get(
         `${type}/${bank}?filter=${tempo}&status=${"inativo"}`
@@ -40,6 +49,8 @@ const Main = () => {
       setRecordErrors(response.data);
     } catch (err) {
       console.error("Ops! houve um erro: " + err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -49,21 +60,6 @@ const Main = () => {
       GetErroRecord(tipo, bank, tempo);
     }
   }, [tempo, tipo, bank]);
-
-  // useEffect(() => {
-  //   const fetchStatus = async () => {
-  //     if (Records.length > 0) {
-  //       try {
-  //         const status = await FindStatusByLast(Records);
-  //         setStatus(status);
-  //       } catch (error) {
-  //         console.error("Erro ao buscar status:", error);
-  //       }
-  //     }
-  //   };
-
-  //   fetchStatus();
-  // }, [Records]);
 
   return (
     <main className="min-h-screen bg-[#1b213b] flex flex-col md:p-2">
@@ -92,28 +88,40 @@ const Main = () => {
         </div>
 
         {/* Gráfico */}
-        <div className="flex-1 mt-1">
-          <div className="h-[50%] w-full ">
+        <div className="flex-1 mt-1 ">
+          <div className="h-[50%] w-full">
             <Grafico data={Records} />
           </div>
         </div>
       </div>
+
+      {/* Publicidade */}
       <div className="bg-[#262d47] p-4 mt-4 rounded-lg shadow-lg">
         <Advertising />
       </div>
+
       {/* Tabela */}
       <div className="bg-[#262d47] p-4 mt-4 rounded-lg shadow-lg">
         <Tabela data={recordsErrors} bank={bank} />
       </div>
+
+      {/* Indicador de Carregamento */}
+      {loading && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="text-white">Carregando...</div>
+        </div>
+      )}
     </main>
   );
 };
 
 export const Home = () => {
+  const [bank, setBank] = useState("ITAU_V2"); // Moveu o estado para o componente Home
+
   return (
     <>
-      <NavBar />
-      <Main />
+      <NavBar onChange={setBank} /> {/* Agora o NavBar tem acesso ao setBank */}
+      <Main bank={bank} setBank={setBank} />
       <Footer />
     </>
   );
