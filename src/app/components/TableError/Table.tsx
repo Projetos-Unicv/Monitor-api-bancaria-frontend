@@ -8,14 +8,14 @@ interface IpropsErro {
 
 export const Tabela: React.FC<IpropsErro> = ({ data, bank }) => {
   return (
-    <div className="w-full mx-auto p-4">
+    <div className="w-full mx-auto ">
       <div className="overflow-hidden bg-white border border-gray-200 shadow-md rounded-lg">
-        <div className="bg-indigo-950 text-white text-center font-bold uppercase py-3">
+        <div className="bg-[rgb(27,33,59)]  text-white text-center font-bold uppercase py-3">
           Detalhamento de Erros: {bank}
         </div>
         <table className="hidden md:table min-w-full">
           <thead>
-            <tr className="bg-indigo-950 text-white">
+            <tr className="bg-[rgb(27,33,59)] text-white">
               <th className="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider">
                 Hora da Consulta
               </th>
@@ -24,9 +24,6 @@ export const Tabela: React.FC<IpropsErro> = ({ data, bank }) => {
               </th>
               <th className="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider">
                 Detalhamento
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider">
-                Status
               </th>
             </tr>
           </thead>
@@ -45,9 +42,6 @@ export const Tabela: React.FC<IpropsErro> = ({ data, bank }) => {
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-700 bg-gray-100">
                     {registro.Detalhamento}
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-700 bg-gray-100">
-                    {registro.StatusDaResposta}
                   </td>
                 </tr>
               ))

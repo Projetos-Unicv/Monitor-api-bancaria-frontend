@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
+import { checkErrorbank } from "../../shared/service/checkErrorbankService";
 
 interface PropsInterface {
   onChange: (value: string) => void;
@@ -7,6 +8,9 @@ interface PropsInterface {
 export const IconBank = ({ onChange }: PropsInterface) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const [bankStatuses, setBankStatuses] = useState<{ [key: string]: string }>(
+    {}
+  );
 
   const banks = useMemo(
     () => [
@@ -56,27 +60,59 @@ export const IconBank = ({ onChange }: PropsInterface) => {
     []
   );
 
-  // Ao iniciar o componente, definimos o banco padrão como "ITAU_V2"
+  // Função para verificar o status de todos os bancos
+  const checkAllBanksStatus = async () => {
+    const statusUpdates: { [key: string]: string } = {};
+
+    // Verificando o status de cada banco
+    for (const bank of banks) {
+      const status = await checkErrorbank(bank.value);
+      statusUpdates[bank.value] = status;
+    }
+
+    setBankStatuses(statusUpdates); // Atualiza os status dos bancos
+    console.log(statusUpdates); // Pode remover esse log se não for necessário
+  };
+
+  // Ao iniciar o componente, definimos o banco padrão como "ITAU_V2" e verificamos o status dos bancos
   useEffect(() => {
     const defaultIndex = banks.findIndex((bank) => bank.value === "ITAU_V2");
     setActiveIndex(defaultIndex);
     onChange(banks[defaultIndex].value);
+
+    // Verificar o status de todos os bancos assim que o componente for montado
+    checkAllBanksStatus();
+
+    // Configurar a atualização a cada 5 minutos (300000ms)
+    const intervalId = setInterval(() => {
+      checkAllBanksStatus(); // Verifica o status de todos os bancos a cada 5 minutos
+    }, 300000);
+
+    // Limpar o intervalo quando o componente for desmontado
+    return () => {
+      clearInterval(intervalId);
+    };
   }, [banks, onChange]);
 
-  const handleIconClick = (index: number, bank: string) => {
-    setActiveIndex(index); // Atualiza o índice ativo
-    onChange(bank); // Chama o onChange com o novo banco
-  };
-
+  // Lida com a abertura e fechamento do dropdown
   const handleDropdownClick = () => {
     setIsDropdownOpen(!isDropdownOpen); // Alterna o estado do dropdown
   };
 
+  // Atualiza o banco ativo e executa a busca do status
+  const handleIconClick = (index: number, bank: string) => {
+    setActiveIndex(index); // Atualiza o índice ativo
+    onChange(bank); // Chama o onChange com o novo banco
+    checkAllBanksStatus(); // Verifica o status após a mudança do banco
+  };
+
+  // Atualiza o banco ativo e executa a busca do status ao selecionar um banco
   const handleSelectChange = (bank: string) => {
     setIsDropdownOpen(false); // Fecha o dropdown após selecionar
     const index = banks.findIndex((b) => b.value === bank);
     setActiveIndex(index); // Atualiza o índice ativo
     onChange(bank); // Chama o onChange com o novo banco
+    checkAllBanksStatus(); // Verifica o status após a mudança do banco
   };
 
   const activeBank = banks[activeIndex ?? 0]; // Banco ativo com base no índice
@@ -96,8 +132,7 @@ export const IconBank = ({ onChange }: PropsInterface) => {
               className="w-8 h-8 mr-4" // Imagem maior no mobile
             />
           )}
-          <span className="text-lg font-medium">{activeBank?.alt}</span>{" "}
-          {/* Aumento do tamanho da fonte */}
+          <span className="text-lg font-medium">{activeBank?.alt}</span>
         </div>
 
         {isDropdownOpen && (
@@ -108,10 +143,8 @@ export const IconBank = ({ onChange }: PropsInterface) => {
                 className="flex items-center p-4 hover:bg-gray-100 cursor-pointer"
                 onClick={() => handleSelectChange(bank.value)}
               >
-                <img src={bank.src} alt={bank.alt} className="w-10 h-10 mr-4" />{" "}
-                {/* Imagem maior */}
-                <span className="text-lg">{bank.alt}</span>{" "}
-                {/* Aumento do tamanho da fonte */}
+                <img src={bank.src} alt={bank.alt} className="w-10 h-10 mr-4" />
+                <span className="text-lg">{bank.alt}</span>
               </div>
             ))}
           </div>
@@ -119,11 +152,11 @@ export const IconBank = ({ onChange }: PropsInterface) => {
       </div>
 
       {/* Ícones de bancos para telas grandes (desktop) */}
-      <div className="hidden sm:flex sm:flex-wrap justify-start gap-4 p-4">
+      <div className="hidden sm:flex sm:flex-wrap justify-start gap-8 p-1">
         {banks.map((bank, index) => (
           <div
             key={index}
-            className={`relative flex flex-col items-center justify-center p-3 rounded-lg transition-all cursor-pointer shadow-md ${
+            className={`relative flex flex-col items-center justify-center w-24 h-26 p-1 rounded-lg transition-all cursor-pointer shadow-md ${
               activeIndex === index
                 ? "bg-blue-100 border-2 border-blue-500 scale-105"
                 : "hover:bg-gray-100"
@@ -133,17 +166,27 @@ export const IconBank = ({ onChange }: PropsInterface) => {
             <img
               src={bank.src}
               alt={bank.alt}
-              className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 transition-transform ${
+              className={`w-14 h-14 transition-transform ${
                 activeIndex === index ? "scale-110" : "hover:scale-105"
               }`}
             />
             <p
-              className={`mt-2 text-xs sm:text-sm md:text-base font-medium ${
+              className={`mt-2 text-[10px] sm:text-xs font-medium text-center truncate ${
                 activeIndex === index ? "text-blue-500" : "text-gray-400"
               }`}
             >
               {bank.alt}
             </p>
+            {/* Exibe o status do banco (ativo/inativo) */}
+            <span
+              className={`text-xs mt-1 ${
+                bankStatuses[bank.value] === "Online"
+                  ? "text-green-500"
+                  : "text-red-500"
+              }`}
+            >
+              {bankStatuses[bank.value]}
+            </span>
           </div>
         ))}
       </div>

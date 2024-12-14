@@ -26,9 +26,9 @@ export default function BasicSelect({ onChange }: BasicSelectProps) {
     <ThemeProvider theme={theme}>
       <Box
         sx={{
-          minWidth: 120,
+          minWidth: 150,
           width: "100%", // Faz com que o seletor ocupe toda a largura possível
-          maxWidth: 320, // Limita o máximo para não ficar muito grande
+          // maxWidth: 320, // Limita o máximo para não ficar muito grande
         }}
       >
         <FormControl fullWidth variant="outlined">
@@ -41,13 +41,14 @@ export default function BasicSelect({ onChange }: BasicSelectProps) {
               },
             }}
           >
-            Últimos(a)
+            Periodo
           </InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={data} // O valor de "data" já está sendo passado aqui
             label="data"
+            size="small"
             onChange={handleChange}
             IconComponent={ArrowDropDownIcon}
             sx={{

@@ -40,74 +40,79 @@ export const Grafico = ({ data }: Iprops) => {
     (acc, [status, level]) => ({ ...acc, [level]: status }),
     {} as globalThis.Record<number, string>
   );
-
   return (
-    <ResponsiveContainer
-      width="100%"
-      height="100%"
-      aspect={window.innerWidth < 768 ? 0.6 : 2} // Proporção ajustada para mobile
-    >
-      <LineChart
-        data={processedData}
-        margin={{
-          top: 20,
-          right: 30,
-          left: 10,
-          bottom: 20,
-        }}
+    <>
+      <div className="pl-[4em] p-6">
+        <p className="text-white">Nome do banco</p>
+      </div>
+      <ResponsiveContainer
+        width="101%"
+        height={250} // Altura configurada fixa
       >
-        <CartesianGrid stroke="#ccc" />
-        <XAxis
-          dataKey="HoraDaConsulta"
-          angle={window.innerWidth < 768 ? 0 : 20}
-          tickFormatter={(HoraDaConsulta) => {
-            return HoraDaConsulta.length > 10
-              ? `${HoraDaConsulta.substring(0, 10)}...`
-              : HoraDaConsulta;
+        <LineChart
+          data={processedData}
+          margin={{
+            top: 20,
+            right: 30,
+            left: 10,
+            bottom: 20,
           }}
-          style={{ fontSize: "0.8rem" }}
-          dy={15} // Ajusta o deslocamento vertical dos rótulos
-        />
-        <YAxis
-          type="number"
-          dataKey="StatusLevel"
-          ticks={yTicks} // Inclui o nível 0
-          tickFormatter={(value) =>
-            value === 0 ? "" : levelToStatus[value] || value
-          } // Deixa o nível 0 vazio
-          domain={[0, 5]} // Inclui o nível 0 no domínio
-          style={{ fontSize: "0.8rem" }}
-        />
-        <Tooltip
-          contentStyle={{
-            fontSize: "0.8rem",
-            borderRadius: "10px",
-          }}
-          formatter={(value, name) => {
-            if (name === "StatusLevel") {
-              const level = value as number; // Garante que o TypeScript sabe que é um número
-              return [levelToStatus[level] || value, "Status"];
-            }
-            return [value, name];
-          }}
-        />
-        <Line
-          type="monotone"
-          dataKey="StatusLevel"
-          stroke="#82ca9d"
-          strokeWidth={2}
-          dot={{ r: 4 }} // Pontos mais visíveis
-          activeDot={{ r: 6 }} // Ponto ativo maior
-        />
-        <Line
-          type="monotone"
-          dataKey="TempoDeResposta"
-          stroke="#8884d8"
-          strokeWidth={2}
-          dot={{ r: 4 }}
-          activeDot={{ r: 6 }}
-        />
-      </LineChart>
-    </ResponsiveContainer>
+        >
+          <CartesianGrid stroke="#ccc" />
+          <XAxis
+            dataKey="HoraDaConsulta"
+            angle={window.innerWidth < 768 ? 0 : 20}
+            tickFormatter={(HoraDaConsulta) => {
+              return HoraDaConsulta.length > 10
+                ? `${HoraDaConsulta.substring(0, 10)}...`
+                : HoraDaConsulta;
+            }}
+            style={{ fontSize: "0.8rem" }}
+            dy={15} // Ajusta o deslocamento vertical dos rótulos
+          />
+          <YAxis
+            type="number"
+            dataKey="StatusLevel"
+            ticks={yTicks} // Inclui o nível 0
+            tickFormatter={(value) =>
+              value === 0 ? "" : levelToStatus[value] || value
+            } // Deixa o nível 0 vazio
+            domain={[0, 5]} // Inclui o nível 0 no domínio
+            style={{ fontSize: "0.8rem" }}
+          />
+          <Tooltip
+            contentStyle={{
+              fontSize: "0.8rem",
+              borderRadius: "10px",
+              backgroundColor: "#1b213b",
+              color: "#fff",
+            }}
+            formatter={(value, name) => {
+              if (name === "StatusLevel") {
+                const level = value as number; // Garante que o TypeScript sabe que é um número
+                return [levelToStatus[level] || value, "Status"];
+              }
+              return [value, name];
+            }}
+          />
+          <Line
+            type="monotone"
+            dataKey="StatusLevel"
+            stroke="#82ca9d"
+            strokeWidth={2}
+            dot={{ r: 4 }} // Pontos mais visíveis
+            activeDot={{ r: 6 }} // Ponto ativo maior
+          />
+          <Line
+            type="monotone"
+            dataKey="TempoDeResposta"
+            stroke="#8884d8"
+            strokeWidth={2}
+            dot={{ r: 4 }}
+            activeDot={{ r: 6 }}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    </>
   );
 };
