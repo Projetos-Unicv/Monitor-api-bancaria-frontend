@@ -40,12 +40,10 @@ export const Grafico = ({ data }: Iprops) => {
     (acc, [status, level]) => ({ ...acc, [level]: status }),
     {} as globalThis.Record<number, string>
   );
-
   return (
     <ResponsiveContainer
-      width="100%"
-      height="100%"
-      aspect={window.innerWidth < 768 ? 0.6 : 2} // Proporção ajustada para mobile
+      width="101%"
+      height={250} // Altura configurada fixa
     >
       <LineChart
         data={processedData}
@@ -82,6 +80,8 @@ export const Grafico = ({ data }: Iprops) => {
           contentStyle={{
             fontSize: "0.8rem",
             borderRadius: "10px",
+            backgroundColor: "#1b213b",
+            color: "#fff",
           }}
           formatter={(value, name) => {
             if (name === "StatusLevel") {

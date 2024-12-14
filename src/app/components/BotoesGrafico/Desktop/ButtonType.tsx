@@ -34,6 +34,7 @@ export const Options: React.FC<ColorToggleButtonProps> = ({
         color="primary"
         value={alignment}
         exclusive
+        size="small"
         onChange={handleChange}
         aria-label="Platform"
         sx={{}}
@@ -62,9 +63,10 @@ export const Options: React.FC<ColorToggleButtonProps> = ({
                   color: "white",
                 },
               },
-              width: "150px", // Largura fixa
-              height: "50px", // Altura fixa
-              fontSize: "16px", // Tamanho da fonte
+              // width: "150px", // Largura fixa
+              // height: "50px", // Altura fixa
+              // fontSize: "16px", // Tamanho da fonte
+              minWidth: 150,
             }}
           >
             {option.label}

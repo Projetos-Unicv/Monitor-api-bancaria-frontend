@@ -11,7 +11,7 @@ export const NavBar = () => {
           height={60} // Aumentando a altura
           alt="Tecnospeed Logo"
         />
-        <span className="text-white self-center text-1xl font-medium whitespace-nowrap">
+        <span className="text-white self-center text-4xl font-medium whitespace-nowrap pl-80">
           Monitor Bancário
         </span>
       </a>
