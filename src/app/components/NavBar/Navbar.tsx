@@ -1,6 +1,6 @@
 export const NavBar = () => {
   return (
-    <nav className="flex flex-wrap items-center justify-between p-4 border-gray-200 bg-[#1b213b]">
+    <nav className="flex flex-wrap items-center justify-between p-2 border-gray-200 bg-[#1b213b]">
       <a
         href="https://tecnospeed.com.br/"
         className="flex items-center space-x-3 rtl:space-x-reverse"
