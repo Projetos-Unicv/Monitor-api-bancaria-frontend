@@ -22,7 +22,7 @@ export const NavBar = ({ onChange }: PropsInterface) => {
       >
         <img
           src="../../../image/tecnospeed-white.svg"
-          width={200}
+          width={150}
           height={60}
           alt="Tecnospeed Logo"
         />
