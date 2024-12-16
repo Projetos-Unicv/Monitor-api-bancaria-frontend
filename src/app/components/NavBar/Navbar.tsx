@@ -1,4 +1,3 @@
-// NavBar Component
 import { useState } from "react";
 import { IconBankMobile } from "../BotoesGrafico/Mobile/ListBankMobile";
 
@@ -11,23 +10,30 @@ export const NavBar = ({ onChange }: PropsInterface) => {
 
   const handleBankChange = (bankValue: string) => {
     onChange(bankValue); // Propaga o valor do banco selecionado
-    console.log("Banco selecionado:", bankValue);
   };
 
   return (
-    <nav className="flex flex-wrap items-center justify-between p-2 border-gray-200 bg-[#1b213b]">
-      <a
-        href="https://tecnospeed.com.br/"
-        className="flex items-center space-x-3 rtl:space-x-reverse"
-      >
-        <img
-          src="../../../image/tecnospeed-white.svg"
-          width={150}
-          height={60}
-          alt="Tecnospeed Logo"
-        />
-      </a>
+    <nav className="flex items-center justify-between p-2 border-gray-200 bg-[#1b213b] relative">
+      {/* Logo e Título visíveis em todas as telas */}
+      <div className="flex items-center space-x-3 rtl:space-x-reverse z-10">
+        <a
+          href="https://tecnospeed.com.br/"
+          className="flex items-center space-x-3 rtl:space-x-reverse"
+        >
+          <img
+            src="../../../image/tecnospeed-white.svg"
+            width={150}
+            height={60}
+            alt="Tecnospeed Logo"
+          />
+        </a>
+        {/* Título logo à frente da logo */}
+        <span className="text-white text-xl font-medium whitespace-nowrap z-20 md:text-3xl">
+          Monitor Bancário
+        </span>
+      </div>
 
+      {/* Botão de Menu (Mobile) */}
       <button
         onClick={() => setMenuOpen(!menuOpen)}
         type="button"
@@ -51,6 +57,7 @@ export const NavBar = ({ onChange }: PropsInterface) => {
         </svg>
       </button>
 
+      {/* Menu lateral (Mobile) */}
       <aside
         className={`fixed top-0 left-0 h-full w-64 bg-[#1b213b] text-white transform transition-transform z-40 md:hidden ${
           menuOpen ? "translate-x-0" : "-translate-x-full"
@@ -87,6 +94,7 @@ export const NavBar = ({ onChange }: PropsInterface) => {
         </nav>
       </aside>
 
+      {/* Overlay para o menu lateral (Mobile) */}
       {menuOpen && (
         <div
           onClick={() => setMenuOpen(false)}

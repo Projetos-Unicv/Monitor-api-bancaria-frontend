@@ -65,27 +65,29 @@ const Main = ({
   return (
     <main className="min-h-screen bg-[#1b213b] flex flex-col md:p-2">
       {/* Container do Banco */}
-      <div className="bg-[#262d47] p-2 mb-3">
+      <div className="bg-[#262d47] p-2 mb-3 hidden md:block">
         <div className="flex justify-center">
           <IconBank onChange={setBank} />
         </div>
       </div>
       {/* Conteúdo Principal */}
       <div className="bg-[#262d47] flex flex-col w-full p-4 flex-1">
-        <span className="text-white self-center text-3xl mb-4 font-medium whitespace-nowrap block md:text-5xl">
-          Monitor Bancário
+        <span className="text-white self-center text-4xl mb-4 font-medium block md:text-3xl whitespace-normal break-words">
+          Gráfico de Latência
         </span>
-        <p className="text-xl font-semibold mb-4 text-white tracking-wide shadow-md text-center block md:hidden">
+
+        <p className="text-xl font-semibold mb-4 text-white tracking-wide drop-shadow-md text-center block md:hidden">
           {bank}
         </p>
+
         {/* Filtros e Status */}
         {/* Filtros Desktop */}
         <div className="hidden w-full md:flex flex-col md:flex-row pl-[4em] justify-between items-center space-y-4 md:space-y-0">
           <div className="flex flex-row justify-around ">
             <Options options={optionsType} onChange={setTipo} />
           </div>
-          <div className="pr-36">
-            <p className="text-xl font-semibold text-white tracking-wide shadow-md">
+          <div className="pr-20 mg-11">
+            <p className="text-xl font-semibold  text-white tracking-wide shadow-md">
               {bank}
             </p>
           </div>
@@ -96,11 +98,11 @@ const Main = ({
 
         {/* Filtros Mobile */}
         <div className="block md:hidden flex flex-col pl-[1em] justify-between items-center space-y-4">
-          <div className="flex flex-row justify-around w-full">
+          <div className="w-full flex">
             <Options options={optionsType} onChange={setTipo} />
           </div>
 
-          <div className="w-full pr-3">
+          <div className="w-full flex">
             <BasicSelect onChange={setTempo} />
           </div>
         </div>

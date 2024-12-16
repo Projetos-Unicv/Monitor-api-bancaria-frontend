@@ -57,11 +57,14 @@ export const IconBankMobile = ({ onChange }: PropsInterface) => {
   };
 
   useEffect(() => {
-    const defaultIndex = banks.findIndex((bank) => bank.value === "");
+    // Só executa se nenhum banco tiver sido selecionado (activeIndex === null)
+    if (activeIndex === null) {
+      const defaultIndex = banks.findIndex((bank) => bank.value === "ITAU_V2");
 
-    if (defaultIndex !== -1) {
-      setActiveIndex(defaultIndex);
-      onChange(banks[defaultIndex].value);
+      if (defaultIndex !== -1) {
+        setActiveIndex(defaultIndex);
+        onChange(banks[defaultIndex].value);
+      }
     }
 
     checkAllBanksStatus(); // Atualiza o status de todos os bancos
@@ -71,7 +74,8 @@ export const IconBankMobile = ({ onChange }: PropsInterface) => {
     }, 300000); // Atualiza a cada 5 minutos
 
     return () => clearInterval(intervalId); // Limpa o intervalo ao desmontar o componente
-  }, [banks, onChange]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [banks, activeIndex, onChange]);
 
   const handleIconClick = (index: number, bank: string) => {
     setActiveIndex(index); // Atualiza o índice do banco ativo

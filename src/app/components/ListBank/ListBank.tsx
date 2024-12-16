@@ -70,10 +70,17 @@ export const IconBank = ({ onChange }: PropsInterface) => {
     }
 
     setBankStatuses(statusUpdates); // Atualiza os status dos bancos
-    console.log(statusUpdates); // Pode remover esse log se não for necessário
   };
 
   // Ao iniciar o componente, definimos o banco padrão como "ITAU_V2" e verificamos o status dos bancos
+
+  // Atualiza o banco ativo e executa a busca do status
+  const handleIconClick = (index: number, bank: string) => {
+    setActiveIndex(index); // Atualiza o índice ativo
+    onChange(bank); // Chama o onChange com o novo banco
+    checkAllBanksStatus(); // Verifica o status após a mudança do banco
+  };
+
   useEffect(() => {
     const defaultIndex = banks.findIndex((bank) => bank.value === "ITAU_V2");
     setActiveIndex(defaultIndex);
@@ -91,24 +98,8 @@ export const IconBank = ({ onChange }: PropsInterface) => {
     return () => {
       clearInterval(intervalId);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [banks, onChange]);
-
-  // Atualiza o banco ativo e executa a busca do status
-  const handleIconClick = (index: number, bank: string) => {
-    setActiveIndex(index); // Atualiza o índice ativo
-    onChange(bank); // Chama o onChange com o novo banco
-    checkAllBanksStatus(); // Verifica o status após a mudança do banco
-  };
-
-  // Atualiza o banco ativo e executa a busca do status ao selecionar um banco
-  // const handleSelectChange = (bank: string) => {
-  //   const index = banks.findIndex((b) => b.value === bank);
-  //   setActiveIndex(index); // Atualiza o índice ativo
-  //   onChange(bank); // Chama o onChange com o novo banco
-  //   checkAllBanksStatus(); // Verifica o status após a mudança do banco
-  // };
-
-  // const activeBank = banks[activeIndex ?? 0]; // Banco ativo com base no índice
 
   return (
     <div className="relative">
