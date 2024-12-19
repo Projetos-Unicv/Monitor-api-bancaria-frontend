@@ -1,51 +1,76 @@
-# React + TypeScript + Vite
+<h1 align="center">Monitor Web Frontend</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Sobre
 
-Currently, two official plugins are available:
+O "monitor-web" é uma aplicação desenvolvida para facilitar o monitoramento de APIs bancárias, com foco na eficiência e na experiência do usuário. O desafio proposto foi tão ambicioso quanto inspirador: desenvolver uma aplicação web inovadora para monitoramento de APIs bancárias. A meta era criar um layout funcional e intuitivo, que permitisse identificar, de forma simples e eficiente, o status operacional das APIs de boletos bancários.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Foram quatro meses de intensa dedicação, onde tecnologia e inovação caminharam lado a lado em busca de soluções que atendem às demandas do mercado financeiro com excelência. O sistema foi projetado para ser de fácil utilização e tem como propósito oferecer uma plataforma confiável e prática para os usuários.
 
-## Expanding the ESLint configuration
+# Tecnologias Utilizadas
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- [Yarn](https://yarnpkg.com/)
+- [React](https://reactjs.org/)
+- [React DOM](https://reactjs.org/docs/react-dom.html)
+- [React Router DOM](https://reactrouter.com/)
+- [Mui Material](https://mui.com/)
+- [Emotion React](https://emotion.sh/docs/introduction)
+- [Emotion Styled](https://emotion.sh/docs/styled)
+- [Recharts](https://recharts.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [Axios](https://axios-http.com/)
+- [Dotenv](https://www.npmjs.com/package/dotenv)
+- [Yup](https://github.com/jquense/yup)
+- [Tailwind CSS](https://tailwindcss.com/)
 
-- Configure the top-level `parserOptions` property like this:
+### Dependências de Desenvolvimento
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- [ESLint](https://eslint.org/)
+- [ESLint Plugin React Hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)
+- [ESLint Plugin React Refresh](https://www.npmjs.com/package/eslint-plugin-react-refresh)
+- [Autoprefixer](https://github.com/postcss/autoprefixer)
+- [PostCSS](https://postcss.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [@Vitejs Plugin React](https://www.npmjs.com/package/@vitejs/plugin-react)
+- [@Types Node](https://www.npmjs.com/package/@types/node)
+- [@Types React](https://www.npmjs.com/package/@types/react)
+- [@Types React DOM](https://www.npmjs.com/package/@types/react-dom)
+- [TypeScript Eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin)
+- [Globals](https://www.npmjs.com/package/globals)
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Ferramentas para Desenvolvimento
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- [Nodemon](https://nodemon.io/)
+- [Ts Node Dev](https://www.npmjs.com/package/ts-node-dev)
+- [TypeScript](https://www.typescriptlang.org/)
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
-# Monitor-api-bancaria-frontend
+# Executando a aplicação
+
+Para executar esta aplicação, siga os seguintes passos:
+
+- Clone o repositório:
+
+  ```bash
+  git clone https://github.com/Projetos-Unicv/Monitor-api-bancaria-frontend/
+
+  ```
+
+- Com o repositório clonado, acesse o diretório raiz do projeto e digite code . para abrir o projeto no VS Code.
+
+- Crie um arquivo .env utilizando como base o modelo fornecido no arquivo env_file.
+
+- Instale as dependências do projeto:
+
+  ```bash
+  # Baixar dependências
+  yarn
+  ```
+
+- Após a conclusão da instalação das dependências, execute a aplicação com o seguinte comando:
+
+  ```bash
+  # Executar a aplicação
+  yarn dev
+  ```
+
+Com estes passos concluídos, a aplicação estará em execução e pronta para ser utilizada.

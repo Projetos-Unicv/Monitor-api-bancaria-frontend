@@ -85,8 +85,8 @@ export const NavBar = ({ onChange }: PropsInterface) => {
             </svg>
           </button>
         </div>
-        <nav className="mt-4">
-          <ul className="space-y-2">
+        <nav className="mt-4 ">
+          <ul className="space-y-2 max-h-screen h-full overflow-y-auto">
             <li>
               <IconBankMobile onChange={handleBankChange} />
             </li>
