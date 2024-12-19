@@ -1,4 +1,3 @@
-// IconBankMobile Component
 import { useEffect, useMemo, useState } from "react";
 import { checkErrorbank } from "../../../shared/service/checkErrorbankService";
 import ItauV2 from "../../../../../public/image/Itau_V2.svg";
@@ -81,8 +80,9 @@ export const IconBankMobile = ({ onChange }: PropsInterface) => {
     setActiveIndex(index); // Atualiza o índice do banco ativo
     onChange(bank); // Chama a função onChange com o valor do banco
   };
+
   return (
-    <div className="space-y-2 max-h-[500px] overflow-y-auto">
+    <div className="flex flex-col overflow-y-auto grow h-[calc(100vh-80px)]">
       {banks.map((bank, index) => (
         <div
           key={index}
